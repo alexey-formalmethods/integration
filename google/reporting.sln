@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bi_dev.integration.google.auth", "bi_dev.integration.google.auth\bi_dev.integration.google.auth.csproj", "{15FC9F9D-9548-4AF7-884C-73C2D74D66FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bi_dev.integration.google.auth.Cnsl", "bi_dev.integration.google.auth.Cnsl\bi_dev.integration.google.auth.Cnsl.csproj", "{A5CD0895-4BCC-468D-9C16-67CA33CA6975}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bi_dev.integration.google.analytics.reporting", "bi_dev.integration.google.analytics.reporting\bi_dev.integration.google.analytics.reporting.csproj", "{879F451B-041D-407B-AE28-2AA7ADF41052}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{15FC9F9D-9548-4AF7-884C-73C2D74D66FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15FC9F9D-9548-4AF7-884C-73C2D74D66FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15FC9F9D-9548-4AF7-884C-73C2D74D66FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15FC9F9D-9548-4AF7-884C-73C2D74D66FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5CD0895-4BCC-468D-9C16-67CA33CA6975}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5CD0895-4BCC-468D-9C16-67CA33CA6975}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5CD0895-4BCC-468D-9C16-67CA33CA6975}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5CD0895-4BCC-468D-9C16-67CA33CA6975}.Release|Any CPU.Build.0 = Release|Any CPU
+		{879F451B-041D-407B-AE28-2AA7ADF41052}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{879F451B-041D-407B-AE28-2AA7ADF41052}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{879F451B-041D-407B-AE28-2AA7ADF41052}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{879F451B-041D-407B-AE28-2AA7ADF41052}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8B630559-AE24-4391-85DE-2854B8F7F939}
+	EndGlobalSection
+EndGlobal
