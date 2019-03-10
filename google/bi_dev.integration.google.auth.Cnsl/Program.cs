@@ -9,7 +9,7 @@ namespace bi_dev.integration.google.auth.Cnsl
         static void Main(string[] args)
         {
 			ReportInitializer reportInitializer = new ReportInitializer(
-				new Config { CredentialServiceAccountJsonPath = @"C:\a.shamshur\public_projects\integration\credentials\ga\bi-dev-001-06eaf0f926da.json" },
+				new Config { CredentialServiceAccountJsonPath = @"C:\a.shamshur\public_projects\integration\common_credentials\ga\bi-dev-001-06eaf0f926da.json" },
 				new View("ga:191261391"),
 				new Dimension[]
 				{

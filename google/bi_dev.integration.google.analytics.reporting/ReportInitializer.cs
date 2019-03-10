@@ -8,7 +8,8 @@ using System.Text;
 
 namespace bi_dev.integration.google.analytics.reporting
 {
-    public class ReportInitializer
+	
+	public class ReportInitializer
     {
 		private Config config;
 
@@ -17,6 +18,19 @@ namespace bi_dev.integration.google.analytics.reporting
 		public DateTime DateStart { get; set; }
 		public DateTime DateEnd { get; set; }
 		public View View { get; set; }
+
+		private Report report;
+		public Report Report
+		{
+			get
+			{
+				if (this.report == null)
+				{
+					this.report = Get();
+				}
+				return this.report;
+			}
+		}
 		public ReportInitializer(Config config, View view, ICollection<Dimension> dimensions, ICollection<Metric> metrics, DateTime dateStart)
 		{
 			this.config = config;
