@@ -6,6 +6,6 @@ namespace bi_dev.integration.google.analytics.reporting.storage
 {
     public interface IReportSaver
     {
-		void Save(ReportInitializer reportInitializer);
+		void Save(CustomReport reportInitializer);
     }
 }

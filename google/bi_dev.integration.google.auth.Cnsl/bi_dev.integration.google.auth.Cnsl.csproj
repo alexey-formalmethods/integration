@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\bi_dev.integration.google.analytics.reporting.db\bi_dev.integration.google.analytics.reporting.storage.csproj" />
     <ProjectReference Include="..\bi_dev.integration.google.analytics.reporting\bi_dev.integration.google.analytics.reporting.csproj" />
   </ItemGroup>
 
