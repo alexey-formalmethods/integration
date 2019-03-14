@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace bi_dev.integration.google.auth
 {
-	
-	public class CredentialManager
+	public class GoogleCredentialManager
     {
 		public static GoogleCredential GetCredentials(string credentialServiceAccountJsonPath, ICollection<string> scopeCollection)
 		{

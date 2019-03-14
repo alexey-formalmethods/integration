@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace bi_dev.integration.google.analytics.reporting
+namespace bi_dev.integration.yandex.metrika.reporting
 {
-    public class ReportManager
-    {
+	public class ReportManager
+	{
 		BaseReportInitializer initializer;
 		public ReportManager(BaseReportInitializer initializer)
 		{

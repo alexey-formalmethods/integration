@@ -18,7 +18,7 @@ namespace bi_dev.integration.google.analytics.reporting
 		public override CustomReport Get()
 		{
 
-			var credetials = CredentialManager.GetCredentials(config.CredentialServiceAccountJsonPath, Constants.Scopes);
+			var credetials = GoogleCredentialManager.GetCredentials(config.CredentialServiceAccountJsonPath, Constants.Scopes);
 			DateRange dateRange = new DateRange
 			{
 				StartDate = DateStart.ToString(Constants.DateParamFormat),
