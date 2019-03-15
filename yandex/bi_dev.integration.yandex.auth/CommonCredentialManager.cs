@@ -4,7 +4,7 @@ using System.Text;
 
 namespace bi_dev.integration.yandex.auth
 {
-    public class CommonCredentialManager
+    public class YCommonCredentialManager
     {
 		public static CommonCredentials Get(ICredentialInitializer initializer)
 		{

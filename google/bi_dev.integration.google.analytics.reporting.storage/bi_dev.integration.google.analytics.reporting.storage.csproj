@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\utils\bi_dev.integration.utils.storage\bi_dev.integration.utils.storage.csproj" />
+    <ProjectReference Include="..\bi_dev.integration.google.analytics.reporting\bi_dev.integration.google.analytics.reporting.csproj" />
+  </ItemGroup>
+
+</Project>
