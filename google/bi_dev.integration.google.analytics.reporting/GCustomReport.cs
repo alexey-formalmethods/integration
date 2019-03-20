@@ -8,8 +8,8 @@ namespace bi_dev.integration.google.analytics.reporting
 {
     public class GCustomReport
     {
-		protected GBaseReportInitializer initializer;
-		public GCustomReport (GBaseReportInitializer initializer)
+		protected GCustomReportInitializer initializer;
+		public GCustomReport (GCustomReportInitializer initializer)
 		{
 			this.initializer = initializer;
 		}

@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Castle.Windsor" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\google\bi_dev.integration.google.analytics.reporting.storage\bi_dev.integration.google.analytics.reporting.storage.csproj" />
     <ProjectReference Include="..\..\google\bi_dev.integration.google.analytics.reporting\bi_dev.integration.google.analytics.reporting.csproj" />
     <ProjectReference Include="..\..\utils\bi_dev.integration.utils.storage\bi_dev.integration.utils.storage.csproj" />

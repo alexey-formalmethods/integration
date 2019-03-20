@@ -6,14 +6,14 @@ namespace bi_dev.integration.google.analytics.reporting
 {
     public class GReportManager
     {
-		GBaseReportInitializer initializer;
-		public GReportManager(GBaseReportInitializer initializer)
+        IGCustomReportReceiver receiver;
+        public GReportManager(IGCustomReportReceiver receiver)
 		{
-			this.initializer = initializer;
-		}
-		public GCustomReport Get()
+            this.receiver = receiver;
+        }
+		public GCustomReport Get(GCustomReportInitializer initializer)
 		{
-			return this.initializer.Get();
+			return this.receiver.Get(initializer);
 		}
 	}
 }

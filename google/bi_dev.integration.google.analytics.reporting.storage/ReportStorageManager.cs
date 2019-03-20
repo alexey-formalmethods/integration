@@ -6,14 +6,12 @@ namespace bi_dev.integration.google.analytics.reporting.storage
 {
     public class ReportStorageManager
     {
-		private GCustomReport report;
 		private IReportSaver reportSaver;
-		public ReportStorageManager(GCustomReport report, IReportSaver reportSaver)
+		public ReportStorageManager(IReportSaver reportSaver)
 		{
-			this.report = report;
 			this.reportSaver = reportSaver;
 		}
-		public void Save()
+		public void Save(GCustomReport report)
 		{
 			reportSaver.Save(report);
 		}
