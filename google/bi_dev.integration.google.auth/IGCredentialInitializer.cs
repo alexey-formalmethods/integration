@@ -4,7 +4,8 @@ using System.Text;
 
 namespace bi_dev.integration.google.auth
 {
-    class CommonCredentials
+    public interface IGCredentialInitializer
     {
+        GCommonCredentials Get();
     }
 }

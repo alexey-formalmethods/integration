@@ -1,4 +1,5 @@
-﻿using System;
+﻿using bi_dev.integration.utils;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace bi_dev.integration.google.analytics.reporting
 {
-    public class GCustomReport
+    public class GCustomReport: IDataTableTransformable
     {
 		protected GCustomReportInitializer initializer;
 		public GCustomReport (GCustomReportInitializer initializer)

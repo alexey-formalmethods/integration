@@ -16,7 +16,7 @@ namespace bi_dev.integration.google.analytics.reporting
 		public GCustomReport Get(GCustomReportInitializer initializer)
 		{
 
-			var credetials = GoogleCredentialManager.GetCredentials(initializer.Config.CredentialServiceAccountJsonPath, GConstants.Scopes);
+			var credetials = GServiceAccountCredentialManager.GetCredentials(initializer.Config.CredentialServiceAccountJsonPath, GConstants.Scopes);
 			DateRange dateRange = new DateRange
 			{
 				StartDate = initializer.DateStart.ToString(GConstants.DateParamFormat),

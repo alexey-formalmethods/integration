@@ -8,4 +8,9 @@
     <PackageReference Include="Google.AdWords" Version="24.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\utils\bi_dev.integration.utils\bi_dev.integration.utils.csproj" />
+    <ProjectReference Include="..\bi_dev.integration.google.auth\bi_dev.integration.google.auth.csproj" />
+  </ItemGroup>
+
 </Project>

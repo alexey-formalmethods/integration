@@ -1,4 +1,5 @@
-﻿using bi_dev.integration.google.analytics.reporting;
+﻿using bi_dev.integration.google.adwords.reporting;
+using bi_dev.integration.google.analytics.reporting;
 using bi_dev.integration.google.analytics.reporting.storage;
 using bi_dev.integration.utils.storage.MsSql;
 using bi_dev.integration.yandex.auth;
@@ -14,6 +15,7 @@ namespace bi_dev.integration.reporting.Cnsl
     {
         static void Main(string[] args)
         {
+            /*
             var container = new WindsorContainer();
             container.Register(Component.For<GReportManager>());
             container.Register(Component.For<IGCustomReportReceiver>()
@@ -66,6 +68,21 @@ namespace bi_dev.integration.reporting.Cnsl
 			bi_dev.integration.yandex.metrika.reporting.YReportManager m = new yandex.metrika.reporting.YReportManager(initializer);
 			var r = m.Get();
             */
+
+            GADCustomReportManager p = new GADCustomReportManager(new ApiAdwrods201809CustomReportReceiver());
+            var e = p.Get(new GADCustomReportInitializer
+            {
+                Account = new GADAccount("xxx-xxx-xxxx"),
+                Columns = new GADCustomColumn[] { new GADCustomColumn("CampaignId"), new GADCustomColumn("Cost") },
+                Type = new GADCustomReportType(GADReportTypeEnum.CAMPAIGN_PERFORMANCE_REPORT),
+                DateStart = new DateTime(2019,1,1),
+                DateEnd = new DateTime(2019,2,1),
+                Config = new GADConfig
+                {
+                    
+                }
+            });
+
 
         }
     }
