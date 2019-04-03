@@ -1,24 +1,20 @@
-﻿using System;
+﻿using bi_dev.integration.reporting;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace bi_dev.integration.yandex.metrika.reporting
 {
-    public class YCustomDimension: IYCustomParameter
+    public class YCustomDimension: CustomReportColumn
 	{
-		public string Name { get; set; }
-		public YCustomDimension() { }
-		public YCustomDimension(string name)
+		public YCustomDimension(string name): base(typeof(string), name)
 		{
-			this.Name = name;
 		}
 	}
-	public class YCustomDimensionValued: YCustomDimension, IYCustomParameterValued
+	public class YCustomDimensionValued: CustomReportCell
 	{
-		public string Value { get; set; }
-		public YCustomDimensionValued (string name, string value): base(name)
+		public YCustomDimensionValued (string name, string value): base(new YCustomDimension(name), value)
 		{
-			this.Value = value;
 		}
 	}
 }

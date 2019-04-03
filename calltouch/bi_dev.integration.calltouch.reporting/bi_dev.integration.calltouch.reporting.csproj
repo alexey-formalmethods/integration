@@ -5,9 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\bi_dev.integration.reporting\bi_dev.integration.reporting.csproj" />
-    <ProjectReference Include="..\..\utils\bi_dev.integration.utils\bi_dev.integration.utils.csproj" />
-    <ProjectReference Include="..\bi_dev.integration.yandex.auth\bi_dev.integration.yandex.auth.csproj" />
+    <ProjectReference Include="..\bi_dev.integration.calltouch.auth\bi_dev.integration.calltouch.auth.csproj" />
   </ItemGroup>
 
 </Project>

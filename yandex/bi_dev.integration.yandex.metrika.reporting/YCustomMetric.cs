@@ -1,23 +1,18 @@
-﻿using System;
+﻿using bi_dev.integration.reporting;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace bi_dev.integration.yandex.metrika.reporting
 {
-    public class YCustomMetric: IYCustomParameter
+    public class YCustomMetric: CustomReportColumn
 	{
-		public string Name { get; set; }
-		public YCustomMetric(string name)
-		{
-			this.Name = name;
-		}
-	}
-	public class YCustomMetricValued : YCustomMetric, IYCustomParameterValued
+		public YCustomMetric(string name): base(typeof(string), name) { }
+    }
+	public class YCustomMetricValued : CustomReportCell
 	{
-		public string Value { get; set; }
-		public YCustomMetricValued(string name, string value) : base(name)
+		public YCustomMetricValued(string name, string value) : base(new YCustomMetric(name), value)
 		{
-			this.Value = value;
 		}
 	}
 }

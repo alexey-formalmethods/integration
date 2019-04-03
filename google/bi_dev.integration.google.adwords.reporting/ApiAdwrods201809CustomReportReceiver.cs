@@ -30,9 +30,9 @@ namespace bi_dev.integration.google.adwords.reporting
             // Create the required service.
 
             ReportQuery query = new ReportQueryBuilder()
-                .Select(initializer.Columns.Select(x=>x.Name).ToArray())
+                .Select(initializer.Columns.Select(x=>x.Value.Name).ToArray())
                 .From(initializer.Type.Name)
-                .During(ReportDefinitionDateRangeType.LAST_7_DAYS)
+                .During(initializer.DateStart, initializer.DateEnd)
                 .Build();
             ReportUtilities utilities = new ReportUtilities(user, "v201809", query,
                     DownloadFormat.XML.ToString());

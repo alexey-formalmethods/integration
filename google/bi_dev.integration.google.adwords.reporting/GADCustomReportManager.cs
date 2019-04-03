@@ -1,19 +1,14 @@
-﻿using System;
+﻿using bi_dev.integration.reporting;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace bi_dev.integration.google.adwords.reporting
 {
-    public class GADCustomReportManager
+    public class GADCustomReportManager: CustomReportManager<GADCustomReport, GADCustomReportInitializer, IGADCustomReportReceiver>
     {
-        IGADCustomReportReceiver receiver;
-        public GADCustomReportManager(IGADCustomReportReceiver receiver)
+        public GADCustomReportManager(IGADCustomReportReceiver receiver) : base(receiver)
         {
-            this.receiver = receiver;
-        }
-        public GADCustomReport Get(GADCustomReportInitializer initializer)
-        {
-            return this.receiver.Get(initializer);
         }
     }
 }

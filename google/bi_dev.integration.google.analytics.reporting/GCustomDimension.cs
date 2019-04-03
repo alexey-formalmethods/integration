@@ -1,25 +1,20 @@
-﻿using System;
+﻿using bi_dev.integration.reporting;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace bi_dev.integration.google.analytics.reporting
 {
-    public class GCustomDimension: IGCustomParameter
-	{
-		public string Name { get; set; }
-		public GCustomDimension() { }
-		public GCustomDimension(string name)
+    public class GCustomDimension: CustomReportColumn
+    {
+		public GCustomDimension(string name): base(typeof(string), name)
 		{
-			this.Name = name;
 		}
 	}
-	public class GCustomDimensionValued: GCustomDimension, IGCustomParameterValued
+	public class GCustomDimensionValued: CustomReportCell
 	{
-		public string Value { get; set; }
-		public GCustomDimensionValued (string name, string value)
+		public GCustomDimensionValued (string name, string value): base (new GCustomDimension(name), value)
 		{
-			base.Name = name;
-			this.Value = value;
 		}
 	}
 }

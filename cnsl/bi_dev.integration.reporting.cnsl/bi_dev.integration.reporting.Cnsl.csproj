@@ -12,8 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\calltouch\bi_dev.integration.calltouch.reporting\bi_dev.integration.calltouch.reporting.csproj" />
     <ProjectReference Include="..\..\google\bi_dev.integration.google.adwords.reporting\bi_dev.integration.google.adwords.reporting.csproj" />
-    <ProjectReference Include="..\..\google\bi_dev.integration.google.analytics.reporting.storage\bi_dev.integration.google.analytics.reporting.storage.csproj" />
+    <ProjectReference Include="..\..\google\bi_dev.integration.google.analytics.reporting.storage\bi_dev.integration.reporting.storage.csproj" />
     <ProjectReference Include="..\..\google\bi_dev.integration.google.analytics.reporting\bi_dev.integration.google.analytics.reporting.csproj" />
     <ProjectReference Include="..\..\utils\bi_dev.integration.utils.storage\bi_dev.integration.utils.storage.csproj" />
     <ProjectReference Include="..\..\yandex\bi_dev.integration.yandex.auth\bi_dev.integration.yandex.auth.csproj" />

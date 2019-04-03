@@ -1,4 +1,5 @@
 ﻿using bi_dev.integration.google.auth;
+using bi_dev.integration.reporting;
 using Google.Apis.AnalyticsReporting.v4;
 using Google.Apis.AnalyticsReporting.v4.Data;
 using System;
@@ -58,7 +59,7 @@ namespace bi_dev.integration.google.analytics.reporting
             {
                 foreach (var row in apiReport.Data.Rows)
                 {
-                    List<IGCustomParameterValued> reportRowCells = new List<IGCustomParameterValued>();
+                    List<CustomReportCell> reportRowCells = new List<CustomReportCell>();
                     for (int i = 0; i < apiReport.ColumnHeader.Dimensions.Count; i++)
                     {
                         reportRowCells.Add(new GCustomDimensionValued(apiReport.ColumnHeader.Dimensions[i], row.Dimensions[i]));

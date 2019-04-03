@@ -1,10 +1,11 @@
-﻿using System;
+﻿using bi_dev.integration.reporting;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace bi_dev.integration.google.analytics.reporting
 {
-    public class GCustomReportInitializer
+    public class GCustomReportInitializer: ICustomReportInitializer
     {
         public GConfig Config { get; }
 
@@ -14,15 +15,28 @@ namespace bi_dev.integration.google.analytics.reporting
         public DateTime DateEnd { get; }
         public GView View { get; }
 
-        public ICollection<IGCustomParameter> DimensionMetricsParams
+        public IDictionary<string, CustomReportColumn> Columns
         {
             get
             {
-                List<IGCustomParameter> prm = new List<IGCustomParameter>();
-                prm.AddRange(this.Dimensions);
-                prm.AddRange(this.Metrics);
-                return prm;
+                Dictionary<string, CustomReportColumn> columns = new Dictionary<string, CustomReportColumn>();
+                foreach(var dim in this.Dimensions)
+                {
+                    if (!columns.ContainsKey(dim.AlterName))
+                    {
+                        columns.Add(dim.AlterName, dim);
+                    }
+                }
+                foreach (var metr in this.Metrics)
+                {
+                    if (!columns.ContainsKey(metr.AlterName))
+                    {
+                        columns.Add(metr.AlterName, metr);
+                    }
+                }
+                return columns;
             }
+            
         }
         public GCustomReportInitializer(GConfig config, GView view, ICollection<GCustomDimension> dimensions, ICollection<GCustomMetric> metrics, DateTime dateStart)
         {

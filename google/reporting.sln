@@ -13,13 +13,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bi_dev.integration.yandex.a
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bi_dev.integration.reporting.Cnsl", "..\cnsl\bi_dev.integration.reporting.cnsl\bi_dev.integration.reporting.Cnsl.csproj", "{D8C94306-EC94-4E6F-A7E5-8AC7CEBE409F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bi_dev.integration.google.analytics.reporting.storage", "bi_dev.integration.google.analytics.reporting.storage\bi_dev.integration.google.analytics.reporting.storage.csproj", "{C3F8A410-3F8D-4FBB-889B-D556B75C9BEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bi_dev.integration.reporting.storage", "bi_dev.integration.google.analytics.reporting.storage\bi_dev.integration.reporting.storage.csproj", "{C3F8A410-3F8D-4FBB-889B-D556B75C9BEE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bi_dev.integration.utils.storage", "..\utils\bi_dev.integration.utils.storage\bi_dev.integration.utils.storage.csproj", "{ED55DF25-5A48-40E0-BCED-830DFEA084CB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bi_dev.integration.google.adwords.reporting", "bi_dev.integration.google.adwords.reporting\bi_dev.integration.google.adwords.reporting.csproj", "{E5CC5EE7-9BD9-469D-BC15-1399DD4596A4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bi_dev.integration.utils", "..\utils\bi_dev.integration.utils\bi_dev.integration.utils.csproj", "{FD34472C-55C9-4FFA-AAD5-EE9E6742012F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bi_dev.integration.calltouch.reporting", "..\calltouch\bi_dev.integration.calltouch.reporting\bi_dev.integration.calltouch.reporting.csproj", "{70659534-AC56-4E44-B218-B5FD149D9BB3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bi_dev.integration.reporting", "..\bi_dev.integration.reporting\bi_dev.integration.reporting.csproj", "{B198EE04-7FD3-48E3-8F82-E990C54AD07E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bi_dev.integration.calltouch.auth", "..\calltouch\bi_dev.integration.calltouch.auth\bi_dev.integration.calltouch.auth.csproj", "{A8116F5B-CC4F-4D67-9D0D-701FCA5EE18A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +69,18 @@ Global
 		{FD34472C-55C9-4FFA-AAD5-EE9E6742012F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD34472C-55C9-4FFA-AAD5-EE9E6742012F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD34472C-55C9-4FFA-AAD5-EE9E6742012F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70659534-AC56-4E44-B218-B5FD149D9BB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70659534-AC56-4E44-B218-B5FD149D9BB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70659534-AC56-4E44-B218-B5FD149D9BB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70659534-AC56-4E44-B218-B5FD149D9BB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B198EE04-7FD3-48E3-8F82-E990C54AD07E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B198EE04-7FD3-48E3-8F82-E990C54AD07E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B198EE04-7FD3-48E3-8F82-E990C54AD07E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B198EE04-7FD3-48E3-8F82-E990C54AD07E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8116F5B-CC4F-4D67-9D0D-701FCA5EE18A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8116F5B-CC4F-4D67-9D0D-701FCA5EE18A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8116F5B-CC4F-4D67-9D0D-701FCA5EE18A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8116F5B-CC4F-4D67-9D0D-701FCA5EE18A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

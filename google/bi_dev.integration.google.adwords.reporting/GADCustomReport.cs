@@ -1,34 +1,33 @@
-﻿using bi_dev.integration.utils;
+﻿using bi_dev.integration.reporting;
+using bi_dev.integration.utils;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Text;
 
 namespace bi_dev.integration.google.adwords.reporting
 {
-    public class GADCustomReport: IDataTableTransformable
+    public class GADCustomReport: CustomReport<GADCustomReportInitializer>
     {
-        protected GADCustomReportInitializer initializer;
-        public ICollection<CustomReportRow> Rows { get; set; }
 
-        public GADCustomReport(GADCustomReportInitializer initializer)
-        {
-            this.initializer = initializer;
-        }
+        public GADCustomReport(GADCustomReportInitializer initializer) : base(initializer) { }
 
-        public DataTable ToDataTable()
+        public override DataTable ToDataTable()
         {
-            DataTable dt = new DataTable();
-            throw new NotImplementedException("eshe ne gotovo");
-            
+            DataTable dt = base.ToDataTable();
+            dt.Columns.Add(new DataColumn("account_id", typeof(string)));
+            dt.Columns.Add(new DataColumn("date_from", typeof(DateTime)));
+            dt.Columns.Add(new DataColumn("date_to", typeof(DateTime)));
+            foreach (var row in dt.Rows)
+            {
+                var dtRow = dt.NewRow();
+                dtRow["account_id"] = Initializer.Account.Id;
+                dtRow["date_from"] = Initializer.DateStart;
+                dtRow["date_to"] = Initializer.DateEnd;
+            }
+            return dt;
         }
     }
-    public class CustomReportRow
-    {
-        public ICollection<IGADCustomParameterValued> Cells { get; set; }
-        public CustomReportRow(ICollection<IGADCustomParameterValued> cells)
-        {
-            this.Cells = cells;
-        }
-    }
+    
 }

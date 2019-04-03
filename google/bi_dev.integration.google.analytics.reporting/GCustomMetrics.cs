@@ -1,24 +1,21 @@
-﻿using System;
+﻿using bi_dev.integration.reporting;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace bi_dev.integration.google.analytics.reporting
 {
-    public class GCustomMetric: IGCustomParameter
+    public class GCustomMetric: CustomReportColumn, IGCustomParameter
 	{
-		public string Name { get; set; }
-		public GCustomMetric(string name)
+		public GCustomMetric(string name): base(typeof(string), name)
 		{
-			this.Name = name;
+			
 		}
 	}
-	public class GCustomMetricValued: GCustomMetric, IGCustomParameterValued
+	public class GCustomMetricValued: CustomReportCell
 	{
-		public string Value { get; set; }
-
-		public GCustomMetricValued(string name, string value): base(name)
+		public GCustomMetricValued(string name, string value): base(new GCustomMetric(name), value)
 		{
-			this.Value = value;
 		}
 	}
 }
