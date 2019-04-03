@@ -11,16 +11,20 @@ namespace bi_dev.integration.yandex.metrika.reporting
 {
     public class YRestReportReceiver : ICustomReportReceiver<YCustomReport, YReportInitializer>
     {
-        
+        YConfig config;
+        public YRestReportReceiver(YConfig config)
+        {
+            this.config = config;
+        }
         public YCustomReport Get(YReportInitializer initializer)
         {
             WebClient wc = new WebClient();
             wc.Headers.Add(
                 "Authorization",
-                $"OAuth {YCommonCredentialManager.Get(new RestCredentialInitializer(initializer.Config.TokensJsonPath)).AccessToken}"
+                $"OAuth {YCommonCredentialManager.Get(new RestCredentialInitializer(config.TokensJsonPath)).AccessToken}"
             );
 
-            string url = $"{ initializer.Config.ApiUrl}stat/v1/data?ids={initializer.Counter.Id.ToString()}" +
+            string url = $"{ config.ApiUrl}stat/v1/data?ids={initializer.Counter.Id.ToString()}" +
                 $"&date1={initializer.DateStart.ToString("yyyy-MM-dd")}" +
                 $"&date2={initializer.DateEnd.ToString("yyyy-MM-dd")}" +
                 $"&metrics={string.Join(",", initializer.Metrics.Select(x => x.Name).ToArray())}" +

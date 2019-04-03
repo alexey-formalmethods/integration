@@ -12,12 +12,15 @@ namespace bi_dev.integration.google.analytics.reporting
 
 	public class GAnalyticsReportingV4CustomReportReciver : IGCustomReportReceiver
 	{
-		
-		
-		public GCustomReport Get(GCustomReportInitializer initializer)
+        private GConfig config;
+        public GAnalyticsReportingV4CustomReportReciver(GConfig config)
+        {
+            this.config = config;
+        }
+        public GCustomReport Get(GCustomReportInitializer initializer)
 		{
 
-			var credetials = GServiceAccountCredentialManager.GetCredentials(initializer.Config.CredentialServiceAccountJsonPath, GConstants.Scopes);
+			var credetials = GServiceAccountCredentialManager.GetCredentials(config.CredentialServiceAccountJsonPath, GConstants.Scopes);
 			DateRange dateRange = new DateRange
 			{
 				StartDate = initializer.DateStart.ToString(GConstants.DateParamFormat),

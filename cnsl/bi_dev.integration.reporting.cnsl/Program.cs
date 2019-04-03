@@ -18,60 +18,53 @@ namespace bi_dev.integration.reporting.Cnsl
     {
         static void Main(string[] args)
         {
-            /*   
-               var container = new WindsorContainer();
-               container.Register(Component.For<GReportManager>());
-               container.Register(Component.For<IGCustomReportReceiver>()
-                   .ImplementedBy<GAnalyticsReportingV4CustomReportReciver>());
+            // GA download and store in MS SQL
 
-               // GA download and store in MS SQL
-
-               GCustomReportInitializer reportInitializer = new GCustomReportInitializer(
-                   new GConfig { CredentialServiceAccountJsonPath = @"C:\a.shamshur\public_projects\integration\common_credentials\google\bi-dev-001-06eaf0f926da.json" },
-                   new GView("ga:191261391"),
-                   new GCustomDimension[]
-                   {
-                       new GCustomDimension("ga:browser"),
-                       new GCustomDimension("ga:source")
-                   },
-                   new GCustomMetric[]
-                   {
-                       new GCustomMetric("ga:sessions"),
-                       new GCustomMetric("ga:users")
-                   },
-                   new DateTime(2019, 3, 14)
-               );
-
-               var reportManager = container.Resolve<GReportManager>();
-               container.Release(reportManager);
-               var re = reportManager.Get(reportInitializer);
-               string connectionString = "Data Source=localhost;Initial Catalog=localdb;Integrated Security=True;MultipleActiveResultSets=True";
-               //rep.SaveToMsSql(new MsSqlReportSaver(connectionString, "t_stg_ga_data", "dbo"));
-               ReportStorageManager m = new ReportStorageManager(
-                   new MsSqlReportSaver(
-                       new MsSqlDataTableStorageWorker(),
-                       new MsSqlStorageInitializer(connectionString, "t_stg_ga_data", true, "dbo")
-                   )
-               );
-               m.Save(re);
-               */
+            GCustomReportInitializer reportInitializer = new GCustomReportInitializer(
+                new GView("ga:191261391"),
+                new DateTime(2019, 3, 14),
+                new string [] {
+                    "ga:sessions",
+                    "ga:users"
+                },
+                new string [] {
+                    "ga:browser",
+                    "ga:source"
+                }
+            );
+            GReportManager gaReportManager = new GReportManager(
+                new GAnalyticsReportingV4CustomReportReciver(
+                    new GConfig { CredentialServiceAccountJsonPath = @"C:\a.shamshur\public_projects\integration\common_credentials\google\bi-dev-001-06eaf0f926da.json" }
+                )
+            );
+            var re = gaReportManager.Get(reportInitializer);
+            string connectionString = "Data Source=localhost;Initial Catalog=localdb;Integrated Security=True;MultipleActiveResultSets=True";
+            CustomReportStorageManager gsm = new CustomReportStorageManager(
+                new MsSqlCustomReportSaver(
+                    new MsSqlDataTableStorageWorker(),
+                    new MsSqlStorageInitializer(connectionString, "t_stg_ga_data", true, "dbo")
+                )
+            );
+            gsm.Save(re);
+               
             // YANDEX
-            /*
+            
 			var token = YCommonCredentialManager.Get(new RestCredentialInitializer(@"C:\a.shamshur\public_projects\integration\common_credentials\yandex\bi-dev-credentials.json"));
 			YReportInitializer initializer = new YReportInitializer(
-				new yandex.metrika.reporting.YConfig
-				{
-					TokensJsonPath = @"C:\a.shamshur\public_projects\integration\common_credentials\yandex\bi-dev-credentials.json",
-					ApiUrl = "https://api-metrika.yandex.net/"
-				}, 
 				new YCounter { Id = 52783963 },
-				new YCustomDimension[] { new YCustomDimension("ym:s:UTMSource") },
-				new YCustomMetric [] {new YCustomMetric("ym:s:visits") },
-				new DateTime(2019,3,14)
-			);
-			YReportManager m = new YReportManager(new YRestReportReceiver());
-			var r = m.Get(initializer);
-            CustomReportStorageManager sm = new CustomReportStorageManager(
+                new DateTime(2019, 3, 14),
+				new string [] {"ym:s:visits"},
+                new string[] {"ym:s:UTMSource"}
+            );
+			YReportManager yrm = new YReportManager(new YRestReportReceiver(
+                new YConfig
+                {
+                    TokensJsonPath = @"C:\a.shamshur\public_projects\integration\common_credentials\yandex\bi-dev-credentials.json",
+                    ApiUrl = "https://api-metrika.yandex.net/"
+                }
+            ));
+			var r = yrm.Get(initializer);
+            CustomReportStorageManager ysm = new CustomReportStorageManager(
                 new MsSqlCustomReportSaver(
                     new MsSqlDataTableStorageWorker(),
                     new MsSqlStorageInitializer(
@@ -82,8 +75,8 @@ namespace bi_dev.integration.reporting.Cnsl
                     )
                 )
             );
-            sm.Save(r);
-            */
+            ysm.Save(r);
+            
             //ADWORDS
             /*
             GADCustomReportManager p = new GADCustomReportManager(new ApiAdwrods201809CustomReportReceiver());
@@ -100,24 +93,38 @@ namespace bi_dev.integration.reporting.Cnsl
                 }
             });
             */
+
+            //CALL-TOUCH
+            
             CTConfig ctConfig = new CTConfig
             {
                 ApiUrl = "http://api.calltouch.ru",
                 TokensJsonPath = @"C:\a.shamshur\public_projects\integration\common_credentials\calltouch\credentials-28466.json"
-
             };
-            CTCustomReportManager m = new CTCustomReportManager(new CTRestCallsReportReceiver(ctConfig));
-            var rep = m.Get(new CTCustomReportInitializer(
-                new DateTime(2019, 1, 1),
-                new DateTime(2019, 1, 2),
-                new CTCustomReportColumn[]
+            CTCustomReportManager ctm = new CTCustomReportManager(new CTRestCallsReportReceiver(ctConfig));
+            var ctr = ctm.Get(new CTCustomReportInitializer(
+                new DateTime(2019, 4, 1),
+                new DateTime(2019, 4, 1),
+                new string[]
                 {
-                    new CTCustomReportColumn("date"),
-                    new CTCustomReportColumn("source"),
-                    new CTCustomReportColumn("yaClientId")
+                    "date",
+                    "source",
+                    "yaClientId"
                 }
             ));
-            var dt = rep.ToDataTable();
+            CustomReportStorageManager ctsm = new CustomReportStorageManager(
+                new MsSqlCustomReportSaver(
+                    new MsSqlDataTableStorageWorker(),
+                    new MsSqlStorageInitializer(
+                        "Data Source=localhost;Initial Catalog=localdb;Integrated Security=True;MultipleActiveResultSets=True",
+                        "t_stg_ct_data",
+                        true,
+                        "dbo"
+                    )
+                )
+            );
+            ctsm.Save(ctr);
+
         }
     }
 }

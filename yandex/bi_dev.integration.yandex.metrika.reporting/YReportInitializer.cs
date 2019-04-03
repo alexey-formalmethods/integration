@@ -1,13 +1,13 @@
 ﻿using bi_dev.integration.reporting;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace bi_dev.integration.yandex.metrika.reporting
 {
     public class YReportInitializer: ICustomReportInitializer
     {
-		protected YConfig config;
-        public YConfig Config { get { return this.config; } }
+		
 		public ICollection<YCustomDimension> Dimensions { get; }
 		public ICollection<YCustomMetric> Metrics { get; }
 		public DateTime DateStart { get; }
@@ -35,23 +35,55 @@ namespace bi_dev.integration.yandex.metrika.reporting
 				return col;
 			}
 		}
-		public YReportInitializer(YConfig config, YCounter counter, ICollection<YCustomDimension> dimensions, ICollection<YCustomMetric> metrics, DateTime dateStart)
+		public YReportInitializer(YCounter counter, DateTime dateStart, ICollection<YCustomMetric> metrics, ICollection<YCustomDimension> dimensions)
 		{
-			this.config = config;
 			this.Counter = counter;
 			this.Dimensions = dimensions;
 			this.Metrics = metrics;
 			this.DateStart = dateStart;
 			this.DateEnd = dateStart;
 		}
-		public YReportInitializer(YConfig config, YCounter counter, ICollection<YCustomDimension> dimensions, ICollection<YCustomMetric> metrics, DateTime dateStart, DateTime dateEnd)
+		public YReportInitializer(YCounter counter, DateTime dateStart, DateTime dateEnd, ICollection<YCustomMetric> metrics, ICollection<YCustomDimension> dimensions)
 		{
-			this.config = config;
 			this.Counter = counter;
 			this.Dimensions = dimensions;
 			this.Metrics = metrics;
 			this.DateStart = dateStart;
 			this.DateEnd = dateEnd;
 		}
-	}
+        public YReportInitializer(YCounter counter, DateTime dateStart, ICollection<string> metrics, ICollection<string> dimensions)
+        {
+            this.Counter = counter;
+            this.Dimensions = dimensions.Select(x=>new YCustomDimension(x)).ToArray();
+            this.Metrics = metrics.Select(x => new YCustomMetric(x)).ToArray();
+            this.DateStart = dateStart;
+            this.DateEnd = dateStart;
+        }
+        public YReportInitializer(YCounter counter, DateTime dateStart, DateTime dateEnd, ICollection<string> metrics, ICollection<string> dimensions)
+        {
+            this.Counter = counter;
+            this.Dimensions = dimensions.Select(x => new YCustomDimension(x)).ToArray();
+            this.Metrics = metrics.Select(x => new YCustomMetric(x)).ToArray();
+            this.DateStart = dateStart;
+            this.DateEnd = dateEnd;
+        }
+        public YReportInitializer(YCounter counter, DateTime dateStart, ICollection<string> metrics)
+        {
+            this.Counter = counter;
+            this.Dimensions = new YCustomDimension[0];
+            this.Metrics = metrics.Select(x => new YCustomMetric(x)).ToArray();
+            this.DateStart = dateStart;
+            this.DateEnd = dateStart;
+        }
+        public YReportInitializer(YCounter counter, DateTime dateStart, DateTime dateEnd, ICollection<string> metrics)
+        {
+            this.Counter = counter;
+            this.Dimensions = new YCustomDimension[0];
+            this.Metrics = metrics.Select(x => new YCustomMetric(x)).ToArray();
+            this.DateStart = dateStart;
+            this.DateEnd = dateEnd;
+        }
+
+
+    }
 }

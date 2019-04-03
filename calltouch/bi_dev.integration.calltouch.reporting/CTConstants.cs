@@ -4,10 +4,8 @@ using System.Text;
 
 namespace bi_dev.integration.calltouch.reporting
 {
-    public class CTConfig
+    public class CTConstants
     {
-        public string ApiUrl { get; set; }
-        public string TokensJsonPath { get; set; }
-        
+        public const string InputDateFormat = "dd/MM/yyyy";
     }
 }

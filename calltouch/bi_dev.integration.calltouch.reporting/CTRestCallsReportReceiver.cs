@@ -24,15 +24,17 @@ namespace bi_dev.integration.calltouch.reporting
             };
             WebClient wc = new WebClient();
             var credentials = CTCommonCredentialManager.Get(new CTFileCredentialsInitializer(config.TokensJsonPath));
-            string resultString = wc.DownloadString($"{config.ApiUrl}/calls-service/RestAPI/{credentials .SiteId}/calls-diary/calls?clientApiId={credentials.AccessToken}&dateFrom=27/03/2019&dateTo=27/03/2019");
+            string resultString = wc.DownloadString($"{config.ApiUrl}/calls-service/RestAPI/{credentials.SiteId}/calls-diary/calls?clientApiId={credentials.AccessToken}&dateFrom={initializer.DateFrom.ToString(CTConstants.InputDateFormat)}&dateTo={initializer.DateTo.ToString(CTConstants.InputDateFormat)}");
             var result = JsonConvert.DeserializeObject<ICollection<Dictionary<string, object>>>(resultString);
-            foreach(var dic in result)
+            foreach(var dict in result)
             {
-                report.Rows.Add(new CustomReportRow(dic.Select(x => new CTCustomReportCell(x.Key, x.Value?.ToString())).ToArray()));
+                report.Rows.Add(
+                    new CustomReportRow(
+                        dict.Select(x => new CTCustomReportCell(x.Key, JsonConvert.SerializeObject(x.Value))).ToArray()
+                    )
+                );
             }
-
             return report;
-
         }
     }
 }
