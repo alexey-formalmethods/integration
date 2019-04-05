@@ -25,7 +25,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bi_dev.integration.calltouc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bi_dev.integration.reporting", "..\bi_dev.integration.reporting\bi_dev.integration.reporting.csproj", "{B198EE04-7FD3-48E3-8F82-E990C54AD07E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bi_dev.integration.calltouch.auth", "..\calltouch\bi_dev.integration.calltouch.auth\bi_dev.integration.calltouch.auth.csproj", "{A8116F5B-CC4F-4D67-9D0D-701FCA5EE18A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bi_dev.integration.calltouch.auth", "..\calltouch\bi_dev.integration.calltouch.auth\bi_dev.integration.calltouch.auth.csproj", "{A8116F5B-CC4F-4D67-9D0D-701FCA5EE18A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bi_dev.integration.yandex.direct.reporting", "..\yandex\bi_dev.integration.yandex.direct.reporting\bi_dev.integration.yandex.direct.reporting.csproj", "{F9F268CE-F5F0-4A42-995C-64B239A3AF1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bi_dev.integration.gitlab.auth", "..\gitlab\bi_dev.integration.gitlab.auth\bi_dev.integration.gitlab.auth.csproj", "{A1B52685-E7E9-4B9F-A514-D40C51629A81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bi_dev.integration.gitlab.reporting", "..\gitlab\bi_dev.integration.gitlab.reporting\bi_dev.integration.gitlab.reporting.csproj", "{C873EA1C-3A87-497F-B45E-135F122A7AF3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +87,18 @@ Global
 		{A8116F5B-CC4F-4D67-9D0D-701FCA5EE18A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8116F5B-CC4F-4D67-9D0D-701FCA5EE18A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8116F5B-CC4F-4D67-9D0D-701FCA5EE18A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9F268CE-F5F0-4A42-995C-64B239A3AF1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9F268CE-F5F0-4A42-995C-64B239A3AF1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9F268CE-F5F0-4A42-995C-64B239A3AF1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9F268CE-F5F0-4A42-995C-64B239A3AF1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1B52685-E7E9-4B9F-A514-D40C51629A81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1B52685-E7E9-4B9F-A514-D40C51629A81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1B52685-E7E9-4B9F-A514-D40C51629A81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1B52685-E7E9-4B9F-A514-D40C51629A81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C873EA1C-3A87-497F-B45E-135F122A7AF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C873EA1C-3A87-497F-B45E-135F122A7AF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C873EA1C-3A87-497F-B45E-135F122A7AF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C873EA1C-3A87-497F-B45E-135F122A7AF3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
