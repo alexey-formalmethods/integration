@@ -44,14 +44,31 @@ namespace bi_dev.integration.reporting
         }
         public CustomReportRow() { }
     }
-    public class CustomReportCell
+    
+    public class CustomReportCell<T>
     {
         public CustomReportColumn Column { get; set; }
-        public string Value { get; set; }
-        public CustomReportCell(CustomReportColumn column, string value)
+        public T Value { get; set; }
+        protected Type valueType;
+        public Type ValueType { get { return this.valueType; } }
+        public CustomReportCell(CustomReportColumn column, T value)
         {
             this.Column = column;
             this.Value = value;
+            this.valueType = typeof(T);
+        }
+    }
+    public class CustomReportCell: CustomReportCell<string>
+    {
+        public CustomReportCell(CustomReportColumn column, string value): base(column, value)
+        {
+        }
+    }
+    public class CustomReportCellObject : CustomReportCell<object>
+    {
+        public CustomReportCellObject(CustomReportColumn column, string value, Type valueType) : base(column, value)
+        {
+            base.valueType = valueType;
         }
     }
 }

@@ -11,6 +11,7 @@ using Castle.Windsor;
 using Google.Apis.AnalyticsReporting.v4.Data;
 using System;
 using System.Collections.Generic;
+using bi_dev.integration.google.sheets.reporting;
 
 namespace bi_dev.integration.reporting.Cnsl
 {
@@ -18,6 +19,26 @@ namespace bi_dev.integration.reporting.Cnsl
     {
         static void Main(string[] args)
         {
+            // Google Sheet
+            string connectionString = "Data Source=localhost;Initial Catalog=localdb;Integrated Security=True;MultipleActiveResultSets=True";
+            GSReportManager gsrm = new GSReportManager(new GSApiV4ReportReceiver(new GSConfig { CredentialServiceAccountJsonPath = @"C:\a.shamshur\public_projects\integration\common_credentials\google\bi-dev-001-06eaf0f926da.json" }));
+            var gsrep = gsrm.Get(new GSReportInitializer(
+                    "1h2yzyTI7dPFTe1aid7IVxyhNGrMTL1ARX0mVZIdc5qM",
+                    "Лист1",
+                    "B2:M",
+                    new KeyValuePair<string, string> [] {
+                        new KeyValuePair<string, string>("Партнер", "partner_ru_name"),
+                        new KeyValuePair<string, string>("CRM name", "crm_sell_point_name") }
+                )
+            );
+            CustomReportStorageManager gsrmsm = new CustomReportStorageManager(
+                new MsSqlCustomReportSaver(
+                    new MsSqlDataTableStorageWorker(),
+                    new MsSqlStorageInitializer(connectionString, "t_stg_gs_data", true, "dbo")
+                )
+            );
+            gsrmsm.Save(gsrep);
+
             // GA download and store in MS SQL
 
             GCustomReportInitializer reportInitializer = new GCustomReportInitializer(
@@ -38,7 +59,7 @@ namespace bi_dev.integration.reporting.Cnsl
                 )
             );
             var re = gaReportManager.Get(reportInitializer);
-            string connectionString = "Data Source=localhost;Initial Catalog=localdb;Integrated Security=True;MultipleActiveResultSets=True";
+            
             CustomReportStorageManager gsm = new CustomReportStorageManager(
                 new MsSqlCustomReportSaver(
                     new MsSqlDataTableStorageWorker(),
