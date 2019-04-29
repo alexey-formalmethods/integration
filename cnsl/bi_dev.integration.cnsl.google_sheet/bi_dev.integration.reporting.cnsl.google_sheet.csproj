@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <PublishWithAspNetCoreTargetManifest>false</PublishWithAspNetCoreTargetManifest>
+  </PropertyGroup>
+ 
+
+  <ItemGroup>
+    <PackageReference Include="NewtonSoft.Json" Version="12.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\google\bi_dev.integration.google.analytics.reporting.storage\bi_dev.integration.reporting.storage.csproj" />
+    <ProjectReference Include="..\..\google\bi_dev.integration.google.sheets.reporting\bi_dev.integration.google.sheets.reporting.csproj" />
+  </ItemGroup>
+
+</Project>

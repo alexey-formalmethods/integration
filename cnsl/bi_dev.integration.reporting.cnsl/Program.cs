@@ -12,6 +12,7 @@ using Google.Apis.AnalyticsReporting.v4.Data;
 using System;
 using System.Collections.Generic;
 using bi_dev.integration.google.sheets.reporting;
+using bi_dev.integration.comagic.reporting;
 
 namespace bi_dev.integration.reporting.Cnsl
 {
@@ -19,6 +20,26 @@ namespace bi_dev.integration.reporting.Cnsl
     {
         static void Main(string[] args)
         {
+            // Comagic https://dataapi.comagic.ru/v2.0
+
+            CMCustomReportManager cmrm = new CMCustomReportManager(new CMCustomReportReceiver(new CMConfig
+            {
+                ApiPath = "https://dataapi.comagic.ru",
+                ApiVersion = "v2.0",
+                CredentialsFilePath = @"C:\a.shamshur\public_projects\integration\common_credentials\comagic\credentials.json"
+            }));
+            var cmrep = cmrm.Get(new CMCustomReportInitializer(
+                    "communications_report",
+                    new DateTime(2019,1,1),
+                    new DateTime(2019, 1, 2), 
+                    new string[]
+                    {
+                        " id", "communication_type"
+                    }
+                )
+            );
+
+
             // Google Sheet
             string connectionString = "Data Source=localhost;Initial Catalog=localdb;Integrated Security=True;MultipleActiveResultSets=True";
             GSReportManager gsrm = new GSReportManager(new GSApiV4ReportReceiver(new GSConfig { CredentialServiceAccountJsonPath = @"C:\a.shamshur\public_projects\integration\common_credentials\google\bi-dev-001-06eaf0f926da.json" }));

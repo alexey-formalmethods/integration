@@ -9,6 +9,17 @@ namespace bi_dev.integration.comagic.reporting
     {
         public CMCustomReport(CMCustomReportInitializer initializer) : base(initializer)
         {
+
+        }
+    }
+    public class CMCustomReportRow: CustomReportRow
+    {
+
+    }
+    public class CMCustomReportColumn : CustomReportColumn<string>
+    {
+        public CMCustomReportColumn(string name) : base(name)
+        {
         }
     }
 }

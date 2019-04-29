@@ -32,7 +32,8 @@ namespace bi_dev.integration.reporting
             {
                 dt.Rows.Add(
                     row.Cells.Where(
-                        x => this.Initializer.Columns.ContainsKey(x.Column.AlterName)
+                        x => this.Initializer.Columns.ContainsKey(x.Column.AlterName) || this.Initializer.Columns.ContainsKey(x.Column.Name)
+
                     ).Select(x => x.Value).ToArray());
             }
             return dt;

@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\bi_dev.integration.reporting\bi_dev.integration.reporting.csproj" />
+    <ProjectReference Include="..\..\bi_dev.integration.auth\bi_dev.integration.auth.csproj" />
   </ItemGroup>
 
 </Project>

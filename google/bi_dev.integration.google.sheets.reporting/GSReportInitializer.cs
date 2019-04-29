@@ -24,14 +24,31 @@ namespace bi_dev.integration.google.sheets.reporting
         public string TabName { get; }
         public string Diapasone { get; }
         private KeyValuePair<string, string> [] columnNames { get; }
+        public bool AllColumns { get { return (columnNames == null || columnNames.Length == 0) ? true : false; } }
         public GSReportInitializer(string sheetId, string tabName, string diapasone, KeyValuePair<string, string> [] columnNames)
         {
             this.SheetId = sheetId;
             this.TabName = tabName;
             this.Diapasone = diapasone;
             this.columnNames = columnNames;
-            this.columns = columnNames.ToDictionary(x => x.Key, x => (CustomReportColumn)new GSReportColumn(typeof(string), x.Key, x.Value));
+            this.columns = this.columnNames.ToDictionary(x => x.Key, x => (CustomReportColumn)new GSReportColumn(typeof(string), x.Key, x.Value));
         }
+        public GSReportInitializer(string sheetId, string tabName, string diapasone, string [] columnNames)
+        {
+            this.SheetId = sheetId;
+            this.TabName = tabName;
+            this.Diapasone = diapasone;
+            this.columnNames = columnNames.Select(x=>new KeyValuePair<string, string>(x, x)).ToArray();
+            this.columns = this.columnNames.ToDictionary(x => x.Key, x => (CustomReportColumn)new GSReportColumn(typeof(string), x.Key, x.Value));
+        }
+        public GSReportInitializer(string sheetId, string tabName, string diapasone)
+        {
+            this.SheetId = sheetId;
+            this.TabName = tabName;
+            this.Diapasone = diapasone;
+            this.columns = new Dictionary<string, CustomReportColumn>();
+        }
+
 
     }
 }

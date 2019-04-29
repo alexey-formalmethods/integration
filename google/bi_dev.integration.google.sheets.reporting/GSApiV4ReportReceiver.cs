@@ -20,6 +20,10 @@ namespace bi_dev.integration.google.sheets.reporting
         public GSReport Get(GSReportInitializer initializer)
         {
             GSReport report = new GSReport(initializer);
+            if (initializer.Columns == null || initializer.Columns.Count == 0)
+            {
+                initializer.Columns = new Dictionary<string, CustomReportColumn>();
+            }
             var service = new SheetsService(new BaseClientService.Initializer()
             {
                 HttpClientInitializer = GServiceAccountCredentialManager.GetCredentials(
@@ -38,12 +42,15 @@ namespace bi_dev.integration.google.sheets.reporting
             ValueRange response = request.Execute();
             IList<IList<object>> values = response.Values;
             HashSet<int> requrequiredColumns = new HashSet<int>();
+
             if (values != null && values.Count > 0)
             {
                 for(int i = 0; i < values[0].Count;i++)
                 {
                     var gsCol = values[0][i].ToString();
-                    if (initializer.Columns.ContainsKey(gsCol)) requrequiredColumns.Add(i);
+                    
+                    if (initializer.Columns.ContainsKey(gsCol) || initializer.AllColumns) requrequiredColumns.Add(i);
+                    if (initializer.AllColumns) initializer.Columns.Add(gsCol, new GSReportColumn(typeof(string), gsCol, gsCol));
                    
                 }
                 if (values.Count > 1)

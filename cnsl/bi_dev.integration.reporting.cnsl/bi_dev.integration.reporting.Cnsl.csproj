@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\calltouch\bi_dev.integration.calltouch.reporting\bi_dev.integration.calltouch.reporting.csproj" />
+    <ProjectReference Include="..\..\comagic\bi_dev.integration.comagic.reporting\bi_dev.integration.comagic.reporting.csproj" />
     <ProjectReference Include="..\..\google\bi_dev.integration.google.adwords.reporting\bi_dev.integration.google.adwords.reporting.csproj" />
     <ProjectReference Include="..\..\google\bi_dev.integration.google.analytics.reporting.storage\bi_dev.integration.reporting.storage.csproj" />
     <ProjectReference Include="..\..\google\bi_dev.integration.google.analytics.reporting\bi_dev.integration.google.analytics.reporting.csproj" />

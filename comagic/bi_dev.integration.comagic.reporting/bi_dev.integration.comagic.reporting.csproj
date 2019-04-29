@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\bi_dev.integration.reporting\bi_dev.integration.reporting.csproj" />
+    <ProjectReference Include="..\bi_dev.integration.comagic.auth\bi_dev.integration.comagic.auth.csproj" />
   </ItemGroup>
 
 </Project>
