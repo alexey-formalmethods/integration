@@ -3,6 +3,7 @@ using bi_dev.integration.reporting;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -24,7 +25,10 @@ namespace bi_dev.integration.calltouch.reporting
             };
             WebClient wc = new WebClient();
             var credentials = new CTCommonCredentialManager().Get(new CTFileCredentialsInitializer(config.TokensJsonPath)).CredentialDictionary[initializer.SiteId];
-            string resultString = wc.DownloadString($"{credentials.Host}/calls-service/RestAPI/{credentials.SiteId}/calls-diary/calls?clientApiId={credentials.AccessToken}&dateFrom={initializer.DateFrom.ToString(CTConstants.ApiDateFormat)}&dateTo={initializer.DateTo.ToString(CTConstants.ApiDateFormat)}");
+            string url = $"{credentials.Host}/calls-service/RestAPI/{credentials.SiteId}/calls-diary/calls?clientApiId={credentials.AccessToken}&dateFrom={initializer.DateFrom.ToString(CTConstants.ApiDateFormat)}&dateTo={initializer.DateTo.ToString(CTConstants.ApiDateFormat)}";
+            //Console.WriteLine(url);
+            //Console.WriteLine(CTConstants.ApiDateFormat);
+            string resultString = wc.DownloadString(url);
             var result = JsonConvert.DeserializeObject<ICollection<Dictionary<string, object>>>(resultString);
             report.Rows = result?.Select(x => new CustomReportRow
             {
