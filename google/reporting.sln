@@ -37,11 +37,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bi_dev.integration.google.s
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bi_dev.integration.reporting.cnsl.google_sheet", "..\cnsl\bi_dev.integration.cnsl.google_sheet\bi_dev.integration.reporting.cnsl.google_sheet.csproj", "{BF9F56D2-62E8-4DDF-9B82-737F049E9E4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bi_dev.integration.comagic.auth", "..\comagic\bi_dev.integration.comagic.auth\bi_dev.integration.comagic.auth.csproj", "{FDAE8042-6BA9-4402-8ECC-CBCF888EE577}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bi_dev.integration.comagic.auth", "..\comagic\bi_dev.integration.comagic.auth\bi_dev.integration.comagic.auth.csproj", "{FDAE8042-6BA9-4402-8ECC-CBCF888EE577}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bi_dev.integration.comagic.reporting", "..\comagic\bi_dev.integration.comagic.reporting\bi_dev.integration.comagic.reporting.csproj", "{60F5E2FD-3448-4C64-95B1-0FD80F6EB5DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bi_dev.integration.auth", "..\bi_dev.integration.auth\bi_dev.integration.auth.csproj", "{4E3EA275-A224-4035-BBDD-02DAD41BAC8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bi_dev.integration.auth", "..\bi_dev.integration.auth\bi_dev.integration.auth.csproj", "{4E3EA275-A224-4035-BBDD-02DAD41BAC8F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bi_dev.integration.reporting.cnsl.comagic", "..\cnsl\bi_dev.integration.reporting.cnsl.comagic\bi_dev.integration.reporting.cnsl.comagic.csproj", "{3A7176F1-8B09-448E-A02B-071B257CBE84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bi_dev.integration.reporting.cnsl.calltouch", "..\cnsl\bi_dev.integration.reporting.cnsl.calltouch\bi_dev.integration.reporting.cnsl.calltouch.csproj", "{174C6A53-E230-42E7-9C44-8B95BAE9E3A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -129,6 +133,14 @@ Global
 		{4E3EA275-A224-4035-BBDD-02DAD41BAC8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E3EA275-A224-4035-BBDD-02DAD41BAC8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E3EA275-A224-4035-BBDD-02DAD41BAC8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A7176F1-8B09-448E-A02B-071B257CBE84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A7176F1-8B09-448E-A02B-071B257CBE84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A7176F1-8B09-448E-A02B-071B257CBE84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A7176F1-8B09-448E-A02B-071B257CBE84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{174C6A53-E230-42E7-9C44-8B95BAE9E3A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{174C6A53-E230-42E7-9C44-8B95BAE9E3A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{174C6A53-E230-42E7-9C44-8B95BAE9E3A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{174C6A53-E230-42E7-9C44-8B95BAE9E3A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

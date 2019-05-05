@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\comagic\bi_dev.integration.comagic.reporting\bi_dev.integration.comagic.reporting.csproj" />
+    <ProjectReference Include="..\..\google\bi_dev.integration.google.analytics.reporting.storage\bi_dev.integration.reporting.storage.csproj" />
+  </ItemGroup>
+
+</Project>

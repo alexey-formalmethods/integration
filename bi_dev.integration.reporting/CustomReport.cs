@@ -27,14 +27,18 @@ namespace bi_dev.integration.reporting
         {
             DataTable dt = new DataTable();
             dt.Columns.AddRange(this.Initializer.Columns.Select(x => new DataColumn(x.Value.AlterName)).ToArray());
-
+            
             foreach(var row in this.Rows)
             {
-                dt.Rows.Add(
-                    row.Cells.Where(
-                        x => this.Initializer.Columns.ContainsKey(x.Column.AlterName) || this.Initializer.Columns.ContainsKey(x.Column.Name)
-
-                    ).Select(x => x.Value).ToArray());
+                var dtRow = dt.NewRow();
+                foreach(var cell in row.Cells)
+                {
+                    if (dtRow.Table.Columns.Contains(cell.Column.AlterName))
+                    {
+                        dtRow[cell.Column.AlterName] = cell.Value;
+                    }
+                }
+                dt.Rows.Add(dtRow);
             }
             return dt;
         }

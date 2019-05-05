@@ -3,6 +3,7 @@ using System;
 
 namespace bi_dev.integration.calltouch.auth
 {
+    
     public class CredentialsFileModel
     {
         [JsonProperty(PropertyName = "site_id")]
@@ -11,6 +12,7 @@ namespace bi_dev.integration.calltouch.auth
         [JsonProperty(PropertyName = "access_token")]
         public string AccessToken { get; set; }
 
-
+        [JsonProperty(PropertyName = "api_host")]
+        public string ApiHost { get; set; }
     }
 }

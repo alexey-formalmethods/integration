@@ -87,17 +87,30 @@ namespace bi_dev.integration.comagic.reporting
         }
         public CMCustomReport Get(CMCustomReportInitializer initializer)
         {
-            string token = new CMAuthManager().Get(new CMAuthInitializer(config.CredentialsFilePath)).AccessToken;
+            string token = config.GetType() == typeof(CMConfigWithAccessToken)?
+                ((CMConfigWithAccessToken)config).AccessToken : 
+                new CMAuthManager().Get(new CMAuthInitializer(((CMConfigWithCredentailsPath)config).CredentialsFilePath)).AccessToken;
             WebClient wc = new WebClient();
             wc.Headers[HttpRequestHeader.ContentType] = "application/json; charset=UTF-8";
             //communications_report
             //ua_client_id
             //https://dataapi.comagic.ru/v2.0
             RPCRequest requestObj = new RPCRequest($"get.{initializer.ReportType}", token, initializer.DateFrom, initializer.DateTo, initializer.NoColumnsPassed?null:initializer.Columns.Select(x=>x.Key).ToArray());
+            
             string resultString = wc.UploadString($"{config.ApiPath}/{config.ApiVersion}", JsonConvert.SerializeObject(requestObj));
             var result = JsonConvert.DeserializeObject<RPCResponse<ICollection<Dictionary<string, object>>>>(resultString);
             if (result.Error != null) throw new WebException($"{result.Error.Code}: {result.Error.Message}");
             CMCustomReport report = new CMCustomReport(initializer);
+            /*
+            foreach (var row in result.Result.Data)
+            {
+                CMCustomReportRow rrow = new CMCustomReportRow();
+                rrow.Cells = new List<CustomReportCell>();
+                foreach (var cell in row)
+                {
+                    rrow.Cells.Add(new CustomReportCell(initializer.Columns[cell.Key], cell.Value?.ToString()));
+                }
+            }*/
             report.Rows = result?.Result?.Data?.Select(x => new CMCustomReportRow
             {
                 Cells = x.Select(t => {
@@ -106,7 +119,7 @@ namespace bi_dev.integration.comagic.reporting
 
                         initializer.Columns.Add(t.Key, new CMCustomReportColumn(t.Key));
                     }
-                    return new CustomReportCell(initializer.Columns[t.Key], (t.Value != null && (t.Value.GetType().IsClass || t.Value.GetType().IsArray)) ? JsonConvert.SerializeObject(t.Value): t.Value?.ToString());
+                    return new CustomReportCell(initializer.Columns[t.Key], (t.Value != null && (t.Value.GetType().IsClass && t.Value.GetType() != typeof(string) || t.Value.GetType().IsArray)) ? JsonConvert.SerializeObject(t.Value): t.Value?.ToString());
                     }).ToArray()
             }).ToArray();
             return report;

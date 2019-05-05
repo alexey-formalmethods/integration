@@ -1,6 +1,7 @@
 ﻿using bi_dev.integration.reporting;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -8,37 +9,35 @@ namespace bi_dev.integration.calltouch.reporting
 {
     public class CTCustomReportInitializer : ICustomReportInitializer
     {
-        private DateTime dateFrom;
-        public DateTime DateFrom { get { return this.dateFrom; } }
-        private DateTime dateTo;
-        public DateTime DateTo { get { return this.dateTo; } }
-        private ICollection<CTCustomReportColumn> columns;
-        public CTCustomReportInitializer(DateTime dateFrom, DateTime dateTo, ICollection<CTCustomReportColumn> columns)
+        public string SiteId { get; }
+        public DateTime DateFrom { get; }
+        public DateTime DateTo { get; }
+        public ICollection<string> ColumnNames { get; }
+        public bool NoColumnsPassed { get; }
+        private IDictionary<string, CustomReportColumn> columns;
+        public CTCustomReportInitializer(string siteId, DateTime dateFrom, DateTime dateTo, ICollection<string> columnNames)
         {
-            this.dateFrom = dateFrom;
-            this.dateTo = dateTo;
-            this.columns = columns;
+            this.SiteId = siteId;
+            this.DateFrom = dateFrom;
+            this.DateTo = dateTo;
+            this.ColumnNames = (columnNames == null) ? new string[0] : columnNames;
+            this.NoColumnsPassed = (this.ColumnNames == null || this.ColumnNames.Count == 0) ? true : false;
+            this.columns = this.ColumnNames.ToDictionary(x => x, y => (CustomReportColumn)new CTCustomReportColumn(y));
         }
-        public CTCustomReportInitializer(DateTime dateFrom, DateTime dateTo, ICollection<string> columns)
+        public CTCustomReportInitializer(string siteId, string dateFrom, string dateTo, ICollection<string> columnNames)
         {
-            this.dateFrom = dateFrom;
-            this.dateTo = dateTo;
-            this.columns = columns.Select(x=>new CTCustomReportColumn(x)).ToArray();
+            this.SiteId = siteId;
+            CultureInfo provider = CultureInfo.InvariantCulture;
+            this.DateFrom = DateTime.ParseExact(dateFrom, CTConstants.InputDateFormat, provider);
+            this.DateTo = DateTime.ParseExact(dateTo, CTConstants.InputDateFormat, provider);
+            this.ColumnNames = (columnNames == null) ? new string[0] : columnNames;
+            this.NoColumnsPassed = (this.ColumnNames == null || this.ColumnNames.Count == 0) ? true : false;
+            this.columns = this.ColumnNames.ToDictionary(x => x, y => (CustomReportColumn)new CTCustomReportColumn(y));
         }
         public IDictionary<string, CustomReportColumn> Columns
         {
-            get
-            {
-                Dictionary<string, CustomReportColumn> cols = new Dictionary<string, CustomReportColumn>();
-                foreach (var col in this.columns)
-                {
-                    if (!cols.ContainsKey(col.AlterName))
-                    {
-                        cols.Add(col.AlterName, col);
-                    }
-                }
-                return cols;
-            }
+            get { return this.columns; }
+            set { this.columns = value; }
         }
                 
             

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "bi_dev.integration.reporting.cnsl.calltouch": {
+      "commandName": "Project",
+      "commandLineArgs": "\"C:\\a.shamshur\\public_projects\\integration\\common_credentials\\calltouch\\credentials.json\" \"C:\\a.shamshur\\public_projects\\integration\\common_credentials\\db-connection\\perfectgroupBiStg.txt\" \"28466\" \"01/04/2019\" \"01/04/2019\" \"[\\\"date\\\",\\\"callUrl\\\",\\\"sessionDate\\\",\\\"city\\\",\\\"uniqueCall\\\",\\\"redirectNumber\\\",\\\"callReferenceId\\\",\\\"utmContent\\\",\\\"siteName\\\",\\\"yaClientId\\\",\\\"source\\\",\\\"medium\\\",\\\"callphase\\\",\\\"duration\\\",\\\"ref\\\",\\\"additionalTags\\\",\\\"hostname\\\",\\\"waitingConnect\\\",\\\"ctCallerId\\\",\\\"browser\\\",\\\"callbackCall\\\",\\\"keyword\\\",\\\"callClientUniqueId\\\",\\\"successful\\\",\\\"timestamp\\\",\\\"order\\\",\\\"callId\\\",\\\"utmSource\\\",\\\"sipCallId\\\",\\\"clientId\\\",\\\"callerNumber\\\",\\\"os\\\",\\\"ip\\\",\\\"utmTerm\\\",\\\"userAgent\\\",\\\"sessionId\\\",\\\"utmCampaign\\\",\\\"url\\\",\\\"attrs\\\",\\\"phoneNumber\\\",\\\"uniqTargetCall\\\",\\\"targetCall\\\",\\\"attribution\\\",\\\"siteId\\\",\\\"utmMedium\\\",\\\"orders\\\",\\\"device\\\"]\" \"t_stg_ct_call_report\""
+    }
+  }
+}

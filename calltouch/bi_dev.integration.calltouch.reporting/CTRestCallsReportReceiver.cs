@@ -23,17 +23,20 @@ namespace bi_dev.integration.calltouch.reporting
                 Rows = new List<CustomReportRow>()
             };
             WebClient wc = new WebClient();
-            var credentials = CTCommonCredentialManager.Get(new CTFileCredentialsInitializer(config.TokensJsonPath));
-            string resultString = wc.DownloadString($"{config.ApiUrl}/calls-service/RestAPI/{credentials.SiteId}/calls-diary/calls?clientApiId={credentials.AccessToken}&dateFrom={initializer.DateFrom.ToString(CTConstants.InputDateFormat)}&dateTo={initializer.DateTo.ToString(CTConstants.InputDateFormat)}");
+            var credentials = new CTCommonCredentialManager().Get(new CTFileCredentialsInitializer(config.TokensJsonPath)).CredentialDictionary[initializer.SiteId];
+            string resultString = wc.DownloadString($"{credentials.Host}/calls-service/RestAPI/{credentials.SiteId}/calls-diary/calls?clientApiId={credentials.AccessToken}&dateFrom={initializer.DateFrom.ToString(CTConstants.ApiDateFormat)}&dateTo={initializer.DateTo.ToString(CTConstants.ApiDateFormat)}");
             var result = JsonConvert.DeserializeObject<ICollection<Dictionary<string, object>>>(resultString);
-            foreach(var dict in result)
+            report.Rows = result?.Select(x => new CustomReportRow
             {
-                report.Rows.Add(
-                    new CustomReportRow(
-                        dict.Select(x => new CTCustomReportCell(x.Key, JsonConvert.SerializeObject(x.Value))).ToArray()
-                    )
-                );
-            }
+                Cells = x.Select(t => {
+                    if (initializer.NoColumnsPassed && (!initializer.Columns.ContainsKey(t.Key)))
+                    {
+
+                        initializer.Columns.Add(t.Key, new CTCustomReportColumn(t.Key));
+                    }
+                    return new CustomReportCell(initializer.Columns[t.Key], (t.Value != null && (t.Value.GetType().IsClass && t.Value.GetType() != typeof(string) || t.Value.GetType().IsArray)) ? JsonConvert.SerializeObject(t.Value) : t.Value?.ToString());
+                }).ToArray()
+            }).ToArray();
             return report;
         }
     }

@@ -22,22 +22,85 @@ namespace bi_dev.integration.reporting.Cnsl
         {
             // Comagic https://dataapi.comagic.ru/v2.0
 
-            CMCustomReportManager cmrm = new CMCustomReportManager(new CMCustomReportReceiver(new CMConfig
-            {
-                ApiPath = "https://dataapi.comagic.ru",
-                ApiVersion = "v2.0",
-                CredentialsFilePath = @"C:\a.shamshur\public_projects\integration\common_credentials\comagic\credentials.json"
-            }));
+            CMCustomReportManager cmrm = new CMCustomReportManager(
+                new CMCustomReportReceiver(
+                    new CMConfigWithCredentailsPath
+                    (
+                        @"C:\a.shamshur\public_projects\integration\common_credentials\comagic\credentials.json",
+                        "https://dataapi.comagic.ru",
+                        "v2.0",
+                        "yyyy-MM-dd HH:mm:ss"
+                    )
+                )
+            );
             var cmrep = cmrm.Get(new CMCustomReportInitializer(
                     "communications_report",
                     new DateTime(2019,1,1),
                     new DateTime(2019, 1, 2), 
                     new string[]
                     {
-                        " id", "communication_type"
+                         "id"
+                        ,"communication_type"
+                        ,"communication_number"
+                        ,"date_time"
+                        ,"ua_client_id"
+                        ,"ym_client_id"
+                        ,"sale_date"
+                        ,"sale_cost"
+                        ,"search_query"
+                        ,"search_engine"
+                        ,"referrer_domain"
+                        ,"referrer"
+                        ,"entrance_page"
+                        ,"gclid"
+                        ,"yclid"
+                        ,"ymclid"
+                        ,"ef_id"
+                        ,"channel"
+                        ,"tags"
+                        ,"site_id"
+                        ,"site_domain_name"
+                        ,"campaign_id"
+                        ,"campaign_name"
+                        ,"visit_other_campaign"
+                        ,"visitor_id"
+                        ,"person_id"
+                        ,"visitor_type"
+                        ,"visitor_session_id"
+                        ,"visits_count"
+                        ,"visitor_first_campaign_id"
+                        ,"visitor_first_campaign_name"
+                        ,"visitor_city"
+                        ,"visitor_region"
+                        ,"visitor_country"
+                        ,"visitor_device"
+                        ,"visitor_custom_properties"
+                        ,"segments"
+                        ,"utm_source"
+                        ,"utm_medium"
+                        ,"utm_term"
+                        ,"utm_content"
+                        ,"utm_campaign"
+                        ,"openstat_ad"
+                        ,"openstat_campaign"
+                        ,"openstat_service"
+                        ,"openstat_source"
+                        ,"attributes"
                     }
                 )
             );
+            CustomReportStorageManager cmsm = new CustomReportStorageManager(
+                new MsSqlCustomReportSaver(
+                    new MsSqlDataTableStorageWorker(),
+                    new MsSqlStorageInitializer(
+                        "Data Source=localhost;Initial Catalog=localdb;Integrated Security=True;MultipleActiveResultSets=True",
+                        "t_stg_yd_data",
+                        true,
+                        "dbo"
+                    )
+                )
+            );
+            cmsm.Save(cmrep);
 
 
             // Google Sheet

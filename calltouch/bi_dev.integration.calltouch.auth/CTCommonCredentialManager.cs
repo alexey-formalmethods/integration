@@ -1,12 +1,13 @@
-﻿using System;
+﻿using bi_dev.integration.auth;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace bi_dev.integration.calltouch.auth
 {
-    public class CTCommonCredentialManager
+    public class CTCommonCredentialManager: IAuthManager<ICTCredentialInitializer, CTCommonCredentials>
     {
-        public static CTCommonCredentials Get(ICTCredentialInitializer initializer)
+        public CTCommonCredentials Get(ICTCredentialInitializer initializer)
         {
             return initializer.Get();
         }
