@@ -8,7 +8,7 @@ using System.Text;
 
 namespace bi_dev.integration.google.analytics.reporting
 {
-    public class GCustomReport: CustomReport<GCustomReportInitializer>, IDataTableTransformable
+    public class GCustomReport: CustomReport<GCustomReportInitializer>
     {
 		public GCustomReport (GCustomReportInitializer initializer): base (initializer)
 		{
@@ -21,12 +21,11 @@ namespace bi_dev.integration.google.analytics.reporting
 			dt.Columns.Add("date_from", typeof(DateTime));
 			dt.Columns.Add("date_to", typeof(DateTime));
 			
-			foreach (var row in this.Rows)
+			foreach (DataRow row in dt.Rows)
 			{
-				var dtRow = dt.NewRow();
-				dtRow["view_id"] = initializer.View.Id;
-				dtRow["date_from"] = initializer.DateStart;
-				dtRow["date_to"] = initializer.DateEnd;
+                row["view_id"] = initializer.View.Id;
+                row["date_from"] = initializer.DateStart;
+                row["date_to"] = initializer.DateEnd;
 			}
 			return dt;
 		}

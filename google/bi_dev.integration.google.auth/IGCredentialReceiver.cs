@@ -5,11 +5,8 @@ using System.Text;
 
 namespace bi_dev.integration.google.auth
 {
-    /*
-    public interface IGCredentialInitializer: IAuthInitializer
+    public interface IGCredentialReceiver<T>: ICredentialReceiver<T, GCommonCredentials> where T: IGAuthInitializer
     {
     }
-    */
 
-    
 }

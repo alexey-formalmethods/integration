@@ -10,7 +10,7 @@ using System.Text;
 namespace bi_dev.integration.google.analytics.reporting
 {
 
-	public class GAnalyticsReportingV4CustomReportReciver : IGCustomReportReceiver
+	public class GAnalyticsReportingV4CustomReportReciver: IGCustomReportReceiver
 	{
         private GConfig config;
         public GAnalyticsReportingV4CustomReportReciver(GConfig config)
@@ -19,59 +19,82 @@ namespace bi_dev.integration.google.analytics.reporting
         }
         public GCustomReport Get(GCustomReportInitializer initializer)
 		{
-
-			var credetials = GServiceAccountCredentialManager.GetCredentials(config.CredentialServiceAccountJsonPath, GConstants.Scopes);
-			DateRange dateRange = new DateRange
+           
+			var credetials = 
+                (config.CredentialServiceAccountJsonPath != null) ?
+                 new GCommonCredentialManager<GServiceAccountFileCredentialReceiver, GServiceAccountFileCredentialInitializer>().Get(new GServiceAccountFileCredentialInitializer(config.CredentialServiceAccountJsonPath, GConstants.Scopes)):
+                 new GCommonCredentialManager<GRestUserCredentialReceiver, GRestUserCredentialInitializer>().Get(new GRestUserCredentialInitializer(config.CredentialUserAccountJsonPath, GConstants.Scopes));
+            DateRange dateRange = new DateRange
 			{
 				StartDate = initializer.DateStart.ToString(GConstants.DateParamFormat),
 				EndDate = initializer.DateEnd.ToString(GConstants.DateParamFormat)
 			};
 
-			// Create the Metrics object.
-			//Metric sessions = new Metric { Expression = "ga:sessions", Alias = "Sessions" };
+            // Create the Metrics object.
+            //Metric sessions = new Metric { Expression = "ga:sessions", Alias = "Sessions" };
 
-			//Create the Dimensions object.
-			//Dimension browser = new Dimension { Name = "ga:browser" };
+            //Create the Dimensions object.
+            //Dimension browser = new Dimension { Name = "ga:browser" };
+            string nextPageToken = null;
+            List<GetReportsResponse> responseList = new List<GetReportsResponse>();
+            // Create the ReportRequest object.
+            do
+            {
+                ReportRequest reportRequest = new ReportRequest
+                {
+                    ViewId = initializer.View.Id,
+                    PageToken = nextPageToken,
+                    IncludeEmptyRows = true,
+                    DateRanges = new List<DateRange>() { dateRange },
+                    Dimensions = initializer.Dimensions.Select(x => new Dimension { Name = x.Name }).ToList(),
+                    Metrics = initializer.Metrics.Select(x => new Metric { Expression = x.Name, Alias = x.Name }).ToList()
+                };
 
-			// Create the ReportRequest object.
-			ReportRequest reportRequest = new ReportRequest
-			{
-				ViewId = initializer.View.Id,
-				DateRanges = new List<DateRange>() { dateRange },
-				Dimensions = initializer.Dimensions.Select(x=>new Dimension { Name = x.Name }).ToList(),
-				Metrics = initializer.Metrics.Select(x=>new Metric { Expression = x.Name, Alias = x.Name }).ToList()
-			};
+                List<ReportRequest> requests = new List<ReportRequest>
+            {
+                reportRequest
+            };
 
-			List<ReportRequest> requests = new List<ReportRequest>
-			{
-				reportRequest
-			};
+                // Create the GetReportsRequest object.
+                GetReportsRequest getReport = new GetReportsRequest() { ReportRequests = requests };
 
-			// Create the GetReportsRequest object.
-			GetReportsRequest getReport = new GetReportsRequest() { ReportRequests = requests };
+                // Call the batchGet method.
+                AnalyticsReportingService s = new AnalyticsReportingService(new Google.Apis.Services.BaseClientService.Initializer { HttpClientInitializer = credetials.GoogleCredential });
+                GetReportsResponse response = s.Reports.BatchGet(getReport).Execute();
+                responseList.Add(response);
+                nextPageToken = response.Reports.FirstOrDefault().NextPageToken;
+            }
+            while (nextPageToken != null);
 
-			// Call the batchGet method.
-			AnalyticsReportingService s = new AnalyticsReportingService(new Google.Apis.Services.BaseClientService.Initializer { HttpClientInitializer = credetials });
-			GetReportsResponse response = s.Reports.BatchGet(getReport).Execute();
-			GCustomReport customReport = new GCustomReport(initializer)
+            GCustomReport customReport = new GCustomReport(initializer)
 			{
 				Rows = new List<CustomReportRow>()
 			};
-			var apiReport = response.Reports.FirstOrDefault();
-            if (apiReport?.Data?.Rows != null)
+            foreach (var response in responseList)
             {
-                foreach (var row in apiReport.Data.Rows)
+                var apiReport = response.Reports.FirstOrDefault();
+                if (apiReport?.Data?.Rows != null)
                 {
-                    List<CustomReportCell> reportRowCells = new List<CustomReportCell>();
-                    for (int i = 0; i < apiReport.ColumnHeader.Dimensions.Count; i++)
+                    foreach (var row in apiReport.Data.Rows)
                     {
-                        reportRowCells.Add(new GCustomDimensionValued(apiReport.ColumnHeader.Dimensions[i], row.Dimensions[i]));
+                        List<CustomReportCell> reportRowCells = new List<CustomReportCell>();
+                        if (apiReport?.ColumnHeader?.Dimensions != null)
+                        {
+                            for (int i = 0; i < apiReport.ColumnHeader.Dimensions.Count; i++)
+                            {
+                                reportRowCells.Add(new GCustomDimensionValued(apiReport.ColumnHeader.Dimensions[i], row.Dimensions[i]));
+                            }
+                        }
+                        if (apiReport?.ColumnHeader?.MetricHeader != null)
+                        {
+                            for (int i = 0; i < apiReport.ColumnHeader.MetricHeader.MetricHeaderEntries.Count; i++)
+                            {
+                                reportRowCells.Add(new GCustomMetricValued(apiReport.ColumnHeader.MetricHeader.MetricHeaderEntries[i].Name, row.Metrics.FirstOrDefault().Values[i]));
+                            }
+                        }
+                        // reportRowCells.Add(new CustomReportCell(initializer.Columns[]))
+                        customReport.Rows.Add(new CustomReportRow(reportRowCells));
                     }
-                    for (int i = 0; i < apiReport.ColumnHeader.MetricHeader.MetricHeaderEntries.Count; i++)
-                    {
-                        reportRowCells.Add(new GCustomMetricValued(apiReport.ColumnHeader.MetricHeader.MetricHeaderEntries[i].Name, row.Metrics.FirstOrDefault().Values[i]));
-                    }
-                    customReport.Rows.Add(new CustomReportRow(reportRowCells));
                 }
             }
 			return customReport;

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "bi_dev.integration.reporting.cnsl.google_analytics": {
+      "commandName": "Project",
+      "commandLineArgs": "\"ga:157149180\" \"yyyyMMdd\" \"20190504\" \"[\\\"ga:sessions\\\"]\" \"\" \"C:\\a.shamshur\\public_projects\\integration\\common_credentials\\google\\bi-dev-user-credentials.json\" \"\" \"C:\\a.shamshur\\public_projects\\integration\\common_credentials\\db-connection\\perfectgroupBiStg.txt\" \"t_stg_ga_report_one\""
+    }
+  }
+}

@@ -26,10 +26,10 @@ namespace bi_dev.integration.google.sheets.reporting
             }
             var service = new SheetsService(new BaseClientService.Initializer()
             {
-                HttpClientInitializer = GServiceAccountCredentialManager.GetCredentials(
+                HttpClientInitializer = new GCommonCredentialManager<GServiceAccountFileCredentialReceiver, GServiceAccountFileCredentialInitializer>().Get(new GServiceAccountFileCredentialInitializer(
                     this.config.CredentialServiceAccountJsonPath, 
                     new string[] { "https://www.googleapis.com/auth/spreadsheets.readonly" }
-                ), // credential,
+                )).GoogleCredential, // credential,
                 ApplicationName = "bi-dev-data-collector",
             });
 

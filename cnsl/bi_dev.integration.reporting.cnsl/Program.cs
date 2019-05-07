@@ -20,6 +20,8 @@ namespace bi_dev.integration.reporting.Cnsl
     {
         static void Main(string[] args)
         {
+            string connectionString = "Data Source=localhost;Initial Catalog=localdb;Integrated Security=True;MultipleActiveResultSets=True";
+            /*
             // Comagic https://dataapi.comagic.ru/v2.0
 
             CMCustomReportManager cmrm = new CMCustomReportManager(
@@ -104,7 +106,7 @@ namespace bi_dev.integration.reporting.Cnsl
 
 
             // Google Sheet
-            string connectionString = "Data Source=localhost;Initial Catalog=localdb;Integrated Security=True;MultipleActiveResultSets=True";
+            
             GSReportManager gsrm = new GSReportManager(new GSApiV4ReportReceiver(new GSConfig { CredentialServiceAccountJsonPath = @"C:\a.shamshur\public_projects\integration\common_credentials\google\bi-dev-001-06eaf0f926da.json" }));
             var gsrep = gsrm.Get(new GSReportInitializer(
                     "1h2yzyTI7dPFTe1aid7IVxyhNGrMTL1ARX0mVZIdc5qM",
@@ -122,24 +124,31 @@ namespace bi_dev.integration.reporting.Cnsl
                 )
             );
             gsrmsm.Save(gsrep);
-
+            */
             // GA download and store in MS SQL
 
             GCustomReportInitializer reportInitializer = new GCustomReportInitializer(
-                new GView("ga:191261391"),
-                new DateTime(2019, 3, 14),
+                new GView("ga:157149180"),
+                new DateTime(2019, 4, 1),
                 new string [] {
-                    "ga:sessions",
-                    "ga:users"
+                    "ga:sessions"
                 },
                 new string [] {
-                    "ga:browser",
-                    "ga:source"
+                    "ga:source",
+                    "ga:medium",
+                    "ga:campaign",
+                    "ga:adContent",
+                    "ga:keyword",
+                    "ga:dimension3"
                 }
             );
             GReportManager gaReportManager = new GReportManager(
                 new GAnalyticsReportingV4CustomReportReciver(
-                    new GConfig { CredentialServiceAccountJsonPath = @"C:\a.shamshur\public_projects\integration\common_credentials\google\bi-dev-001-06eaf0f926da.json" }
+                    new GConfig
+                    {
+                        CredentialUserAccountJsonPath = @"C:\a.shamshur\public_projects\integration\common_credentials\google\bi-dev-user-credentials.json"
+                        //,CredentialServiceAccountJsonPath = @"C:\a.shamshur\public_projects\integration\common_credentials\google\bi-dev-001-06eaf0f926da.json"
+                    }
                 )
             );
             var re = gaReportManager.Get(reportInitializer);
@@ -151,7 +160,7 @@ namespace bi_dev.integration.reporting.Cnsl
                 )
             );
             gsm.Save(re);
-               
+            /*
             // YANDEX
             
 			var token = YCommonCredentialManager.Get(new RestCredentialInitializer(@"C:\a.shamshur\public_projects\integration\common_credentials\yandex\bi-dev-credentials.json"));
@@ -181,7 +190,8 @@ namespace bi_dev.integration.reporting.Cnsl
                 )
             );
             ysm.Save(r);
-            
+            */
+
             //ADWORDS
             /*
             GADCustomReportManager p = new GADCustomReportManager(new ApiAdwrods201809CustomReportReceiver());
@@ -200,14 +210,14 @@ namespace bi_dev.integration.reporting.Cnsl
             */
 
             //CALL-TOUCH
-            
+            /*
             CTConfig ctConfig = new CTConfig
             {
-                ApiUrl = "http://api.calltouch.ru",
                 TokensJsonPath = @"C:\a.shamshur\public_projects\integration\common_credentials\calltouch\credentials-28466.json"
             };
             CTCustomReportManager ctm = new CTCustomReportManager(new CTRestCallsReportReceiver(ctConfig));
             var ctr = ctm.Get(new CTCustomReportInitializer(
+                "29196",
                 new DateTime(2019, 4, 1),
                 new DateTime(2019, 4, 1),
                 new string[]
@@ -229,6 +239,7 @@ namespace bi_dev.integration.reporting.Cnsl
                 )
             );
             ctsm.Save(ctr);
+            */
 
         }
     }

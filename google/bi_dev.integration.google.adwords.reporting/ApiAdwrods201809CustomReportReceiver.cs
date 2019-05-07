@@ -14,15 +14,16 @@ namespace bi_dev.integration.google.adwords.reporting
     {
         public GADCustomReport Get(GADCustomReportInitializer initializer)
         {
-            var cred = GCommonCredentialManager.Get(new GRestCredentialInitializer(initializer.Config.CredentialsJsonPath));
+            // пофиксить авторизацию
+            var cred = new GCommonCredentialManager<GRestUserCredentialReceiver, GRestUserCredentialInitializer>().Get(new GRestUserCredentialInitializer(initializer.Config.CredentialsJsonPath, null));
             AdWordsAppConfig config = new AdWordsAppConfig();
             config.DeveloperToken = initializer.Config.DeveloperToken;
             
             AdWordsUser user = new AdWordsUser(config);
-            user.Config.OAuth2RefreshToken = cred.RefreshToken;
-            user.Config.OAuth2AccessToken = cred.AccessToken;
-            user.Config.OAuth2ClientId = cred.ClientId;
-            user.Config.OAuth2ClientSecret = cred.ClientSecret;
+            //user.Config.OAuth2RefreshToken = cred.RefreshToken;
+            //user.Config.OAuth2AccessToken = cred.AccessToken;
+            //user.Config.OAuth2ClientId = cred.ClientId;
+            //user.Config.OAuth2ClientSecret = cred.ClientSecret;
 
 
 

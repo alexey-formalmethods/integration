@@ -8,4 +8,11 @@ namespace bi_dev.integration.auth
     {
         CT Get(T initializer);
     }
+    public abstract class AuthManager<T, IT, CT> where T: ICredentialReceiver<IT, CT>, new() where IT: IAuthInitializer where CT: ICredential
+    {
+        public CT Get(IT initializer)
+        {
+            return new T().Get(initializer);
+        }
+    }
 }

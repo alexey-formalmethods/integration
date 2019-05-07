@@ -5,12 +5,13 @@ using System.Collections.Generic;
 
 namespace bi_dev.integration.google.auth
 {
-	public class GServiceAccountCredentialManager: IGCredentialInitializer
+    /*
+	public class GUserAccountCredentialManager: IGCredentialInitializer
     {
         private string credentialServiceAccountJsonPath;
         private ICollection<string> scopeCollection;
         public GoogleCredential ScopedCredential { get; }
-        public GServiceAccountCredentialManager(string credentialServiceAccountJsonPath, ICollection<string> scopeCollection = null)
+        public GUserAccountCredentialManager(string credentialServiceAccountJsonPath, ICollection<string> scopeCollection = null)
         {
             this.credentialServiceAccountJsonPath = credentialServiceAccountJsonPath;
             this.scopeCollection = scopeCollection;
@@ -36,5 +37,5 @@ namespace bi_dev.integration.google.auth
         {
             return new GCommonCredentials { AccessToken = this.ScopedCredential.UnderlyingCredential.GetAccessTokenForRequestAsync().Result };
         }
-    }
+    }*/
 }

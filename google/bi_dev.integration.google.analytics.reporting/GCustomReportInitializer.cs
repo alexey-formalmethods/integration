@@ -35,6 +35,7 @@ namespace bi_dev.integration.google.analytics.reporting
                         columns.Add(metr.AlterName, metr);
                     }
                 }
+                // columns.Add("date_from", new CustomReportColumn<DateTime>)
                 return columns;
             }
             
