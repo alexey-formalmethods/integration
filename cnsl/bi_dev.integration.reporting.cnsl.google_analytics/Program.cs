@@ -3,8 +3,10 @@ using bi_dev.integration.reporting.storage;
 using bi_dev.integration.utils.storage.MsSql;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 
 namespace bi_dev.integration.reporting.cnsl.google_analytics
 {
@@ -18,9 +20,9 @@ namespace bi_dev.integration.reporting.cnsl.google_analytics
             string ga_day = args[2];
             DateTime event_day = DateTime.ParseExact(ga_day, dateFormat, CultureInfo.CurrentCulture);
             string metricStr = args[3];
-            string[] metrics = string.IsNullOrWhiteSpace(metricStr) ? new string[0] : JsonConvert.DeserializeObject<string[]>(metricStr);
+            string [][] metrics = string.IsNullOrWhiteSpace(metricStr) ? new string[0][] : JsonConvert.DeserializeObject<string[][]>(metricStr);
             string dimStr = args[4];
-            string[] dimesnions = string.IsNullOrWhiteSpace(dimStr) ? new string [0] :JsonConvert.DeserializeObject<string[]>(dimStr);
+            string[][] dimesnions = string.IsNullOrWhiteSpace(dimStr) ? new string[0][] : JsonConvert.DeserializeObject<string[][]>(dimStr);
             string credentialUserAccountJsonPath = args[5];
             string credentialServiceAccountJsonPath = args[6];
             string connectionString = File.ReadAllText(args[7]);
@@ -28,8 +30,8 @@ namespace bi_dev.integration.reporting.cnsl.google_analytics
             GCustomReportInitializer reportInitializer = new GCustomReportInitializer(
                 new GView(view_id),
                 event_day,
-                metrics,
-                dimesnions
+                metrics.Select(x=>new KeyValuePair<string, string>(x[0], x[1])).ToArray(),
+                dimesnions.Select(x => new KeyValuePair<string, string>(x[0], x[1])).ToArray()
             );
             GReportManager gaReportManager = new GReportManager(
                 new GAnalyticsReportingV4CustomReportReciver(

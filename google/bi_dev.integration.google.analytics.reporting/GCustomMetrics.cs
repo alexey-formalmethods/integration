@@ -11,10 +11,14 @@ namespace bi_dev.integration.google.analytics.reporting
 		{
 			
 		}
-	}
+        public GCustomMetric(string name, string alterName) : base(typeof(string), name, alterName)
+        {
+
+        }
+    }
 	public class GCustomMetricValued: CustomReportCell
 	{
-		public GCustomMetricValued(string name, string value): base(new GCustomMetric(name), value)
+		public GCustomMetricValued(GCustomMetric metric, string value): base(metric, value)
 		{
 		}
 	}

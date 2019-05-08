@@ -38,8 +38,8 @@ namespace bi_dev.integration.google.analytics.reporting
                 // columns.Add("date_from", new CustomReportColumn<DateTime>)
                 return columns;
             }
-            
         }
+       
         public GCustomReportInitializer(GView view, DateTime dateStart, ICollection<GCustomMetric> metrics, ICollection<GCustomDimension> dimensions)
         {
             
@@ -70,6 +70,14 @@ namespace bi_dev.integration.google.analytics.reporting
             this.View = view;
             this.Dimensions = dimensions.Select(x => new GCustomDimension(x)).ToArray();
             this.Metrics = metrics.Select(x => new GCustomMetric(x)).ToArray();
+            this.DateStart = dateStart;
+            this.DateEnd = dateStart;
+        }
+        public GCustomReportInitializer(GView view, DateTime dateStart, ICollection<KeyValuePair<string, string>> metrics, ICollection<KeyValuePair<string, string>> dimensions)
+        {
+            this.View = view;
+            this.Dimensions = dimensions.Select(x => new GCustomDimension(x.Key, x.Value)).ToArray();
+            this.Metrics = metrics.Select(x => new GCustomMetric(x.Key, x.Value)).ToArray();
             this.DateStart = dateStart;
             this.DateEnd = dateStart;
         }

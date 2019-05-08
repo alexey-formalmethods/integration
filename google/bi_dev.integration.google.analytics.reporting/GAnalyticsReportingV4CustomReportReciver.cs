@@ -82,14 +82,14 @@ namespace bi_dev.integration.google.analytics.reporting
                         {
                             for (int i = 0; i < apiReport.ColumnHeader.Dimensions.Count; i++)
                             {
-                                reportRowCells.Add(new GCustomDimensionValued(apiReport.ColumnHeader.Dimensions[i], row.Dimensions[i]));
+                                reportRowCells.Add(new GCustomDimensionValued(initializer.Dimensions.Where(x=>x.Name == apiReport.ColumnHeader.Dimensions[i]).FirstOrDefault(), row.Dimensions[i]));
                             }
                         }
                         if (apiReport?.ColumnHeader?.MetricHeader != null)
                         {
                             for (int i = 0; i < apiReport.ColumnHeader.MetricHeader.MetricHeaderEntries.Count; i++)
                             {
-                                reportRowCells.Add(new GCustomMetricValued(apiReport.ColumnHeader.MetricHeader.MetricHeaderEntries[i].Name, row.Metrics.FirstOrDefault().Values[i]));
+                                reportRowCells.Add(new GCustomMetricValued(initializer.Metrics.Where(x=>x.Name == apiReport.ColumnHeader.MetricHeader.MetricHeaderEntries[i].Name).FirstOrDefault(), row.Metrics.FirstOrDefault().Values[i]));
                             }
                         }
                         // reportRowCells.Add(new CustomReportCell(initializer.Columns[]))
