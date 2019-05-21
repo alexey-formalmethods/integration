@@ -12,4 +12,10 @@ namespace bi_dev.integration.google.auth
         public string AccessToken { get; set; }
         public GoogleCredential GoogleCredential { get; set; }
     }
+    public class GCommonCredentialsExtended : GCommonCredentials
+    {
+        public string RefreshToken { get; set; }
+        public string ClientId { get; set; }
+        public string ClientSecret { get; set; }
+    }
 }

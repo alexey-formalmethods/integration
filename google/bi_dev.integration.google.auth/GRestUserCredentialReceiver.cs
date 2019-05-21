@@ -22,10 +22,13 @@ namespace bi_dev.integration.google.auth
             {
                 googleCredentials = googleCredentials.CreateScoped(initializer.Scopes);
             }
-            return new GCommonCredentials
+            return new GCommonCredentialsExtended
             {
                 GoogleCredential = googleCredentials,
-                AccessToken = resultObj.AccessToken
+                AccessToken = resultObj.AccessToken,
+                ClientId = initializer.ClientId,
+                ClientSecret = initializer.ClientSecret,
+                RefreshToken = initializer.RefreshToken
             };
            
         }

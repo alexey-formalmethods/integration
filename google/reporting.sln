@@ -49,6 +49,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bi_dev.integration.reportin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bi_dev.integration.reporting.cnsl.google_analytics", "..\cnsl\bi_dev.integration.reporting.cnsl.google_analytics\bi_dev.integration.reporting.cnsl.google_analytics.csproj", "{536632BD-7064-4CEF-BFCA-8136AD9A35E2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bi_dev.integration.reporting.cnsl.google_adwords", "..\cnsl\bi_dev.integration.reporting.cnsl.google_adwords\bi_dev.integration.reporting.cnsl.google_adwords.csproj", "{89FC107F-D013-49FB-8186-B81B001A61FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -147,6 +149,10 @@ Global
 		{536632BD-7064-4CEF-BFCA-8136AD9A35E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{536632BD-7064-4CEF-BFCA-8136AD9A35E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{536632BD-7064-4CEF-BFCA-8136AD9A35E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89FC107F-D013-49FB-8186-B81B001A61FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89FC107F-D013-49FB-8186-B81B001A61FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89FC107F-D013-49FB-8186-B81B001A61FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89FC107F-D013-49FB-8186-B81B001A61FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

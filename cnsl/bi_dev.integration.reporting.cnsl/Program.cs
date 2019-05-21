@@ -195,18 +195,17 @@ namespace bi_dev.integration.reporting.Cnsl
             //ADWORDS
             /*
             GADCustomReportManager p = new GADCustomReportManager(new ApiAdwrods201809CustomReportReceiver());
-            var e = p.Get(new GADCustomReportInitializer
-            {
-                Account = new GADAccount("xxx-xxx-xxxx"),
-                Columns = new GADCustomColumn[] { new GADCustomColumn("CampaignId"), new GADCustomColumn("Cost") },
-                Type = new GADCustomReportType(GADReportTypeEnum.CAMPAIGN_PERFORMANCE_REPORT),
-                DateStart = new DateTime(2019,1,1),
-                DateEnd = new DateTime(2019,2,1),
-                Config = new GADConfig
-                {
-                    
-                }
-            });
+            var gadRep = p.Get(new GADCustomReportInitializer(
+                new GADConfig {
+                    CredentialsJsonPath = @"C:\a.shamshur\public_projects\integration\common_credentials\google\google-adwords-credentials_smartprice.json",
+                    DeveloperToken = "QXcVkUmW93V6TcMiqnXlAA"
+                },
+                "250-186-1680",
+                new string[] { "CampaignId", "Cost" },
+                "CAMPAIGN_PERFORMANCE_REPORT",
+                new DateTime(2019, 1, 1),
+                new DateTime(2019, 5, 21)
+            ));
             */
 
             //CALL-TOUCH
