@@ -21,7 +21,7 @@ namespace bi_dev.integration.reporting.cnsl.google_adwords
             DateTime dateFrom = DateTime.ParseExact(args[6], dateFormat, CultureInfo.CurrentCulture);
             string dbConnectionString = File.ReadAllText(args[7]);
             string tblName = args[8];
-            Console.WriteLine(string.IsNullOrWhiteSpace(dbConnectionString)?"FUCK NO Connection string": dbConnectionString);
+            //Console.WriteLine(string.IsNullOrWhiteSpace(dbConnectionString)?"FUCK NO Connection string": dbConnectionString);
             GADCustomReportManager p = new GADCustomReportManager(new ApiAdwrods201809CustomReportReceiver());
             var gadRep = p.Get(new GADCustomReportInitializer(
                 new GADConfig {
