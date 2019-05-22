@@ -40,7 +40,9 @@ namespace bi_dev.integration.utils.storage.MsSql
 				}
 				using (SqlBulkCopy bulkCopy = new SqlBulkCopy(connection))
 				{
-					foreach (DataColumn c in dataTable.Columns)
+                    bulkCopy.BulkCopyTimeout = connection.ConnectionTimeout;
+
+                    foreach (DataColumn c in dataTable.Columns)
 					{
 						bulkCopy.ColumnMappings.Add(c.ColumnName, c.ColumnName);
 					}
