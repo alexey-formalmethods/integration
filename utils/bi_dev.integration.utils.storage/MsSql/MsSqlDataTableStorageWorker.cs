@@ -34,6 +34,7 @@ namespace bi_dev.integration.utils.storage.MsSql
 					);
 					using (SqlCommand sc = new SqlCommand(cmdText, connection))
 					{
+                        sc.CommandTimeout = connection.ConnectionTimeout;
 						sc.ExecuteNonQuery();
 					}
 				}
