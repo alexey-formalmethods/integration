@@ -19,7 +19,7 @@ namespace bi_dev.integration.reporting.cnsl.google_adwords
             string[] columns = JsonConvert.DeserializeObject<string[]>(args[4]);
             string dateFormat = args[5];
             DateTime dateFrom = DateTime.ParseExact(args[6], dateFormat, CultureInfo.CurrentCulture);
-            string dbConnectionStringPath = args[7];
+            string dbConnectionString = File.ReadAllText(args[7]);
             string tblName = args[8];
 
             GADCustomReportManager p = new GADCustomReportManager(new ApiAdwrods201809CustomReportReceiver());
@@ -38,7 +38,7 @@ namespace bi_dev.integration.reporting.cnsl.google_adwords
                new MsSqlCustomReportSaver(
                    new MsSqlDataTableStorageWorker(),
                    new MsSqlStorageInitializer(
-                       dbConnectionStringPath,
+                       dbConnectionString,
                        tblName,
                        true,
                        "dbo"
