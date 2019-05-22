@@ -56,8 +56,8 @@ namespace bi_dev.integration.google.adwords.reporting
             GADCustomReport report = new GADCustomReport(initializer);
             report.Rows = xmlReport.Table.Row.Select(x => new CustomReportRow(
                     ((XmlNode[])x)
-                    .Where(t=>initializer.Columns.ContainsKey(t.Name.ToLower()))
-                    .Select(t=>new CustomReportCell(initializer.Columns[t.Name.ToLower()], t.Value)).ToArray()
+                    .Where(t=>initializer.AlterColumns.ContainsKey(t.Name.ToLower()))
+                    .Select(t=>new CustomReportCell(initializer.AlterColumns[t.Name.ToLower()], t.Value)).ToArray()
                 )
             ).ToArray();
             return report;

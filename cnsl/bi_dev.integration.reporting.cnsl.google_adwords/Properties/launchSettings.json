@@ -2,7 +2,7 @@
   "profiles": {
     "bi_dev.integration.reporting.cnsl.google_adwords": {
       "commandName": "Project",
-      "commandLineArgs": "\"C:\\\\a.shamshur\\\\public_projects\\\\integration\\\\common_credentials\\\\google\\\\google-adwords-credentials_smartprice.json\" \"C:\\\\a.shamshur\\\\public_projects\\\\integration\\\\common_credentials\\\\google\\\\google-adwords-developer-token.txt\" \"250-186-1680\" \"CAMPAIGN_PERFORMANCE_REPORT\" \"[\\\"CampaignId\\\",\\\"Cost\\\"]\" \"yyyy-MM-dd\" \"2019-05-20\" \"C:\\\\a.shamshur\\\\public_projects\\\\integration\\\\common_credentials\\\\db-connection\\\\smartpriceBiStg.txt\" \"t_stg_gadw_campaign_performance_report_one\""
+      "commandLineArgs": "\"C:\\\\a.shamshur\\\\public_projects\\\\integration\\\\common_credentials\\\\google\\\\google-adwords-credentials_smartprice.json\" \"C:\\\\a.shamshur\\\\public_projects\\\\integration\\\\common_credentials\\\\google\\\\google-adwords-developer-token.txt\" \"250-186-1680\" \"CAMPAIGN_PERFORMANCE_REPORT\" \"[[\\\"CampaignId\\\", \\\"CampaignId\\\"],[\\\"CampaignName\\\", \\\"campaign\\\"],[\\\"Cost\\\", \\\"Cost\\\"]]\" \"yyyy-MM-dd\" \"2019-05-20\" \"C:\\\\a.shamshur\\\\public_projects\\\\integration\\\\common_credentials\\\\db-connection\\\\smartpriceBiStg.txt\" \"t_stg_gadw_campaign_performance_report_one\""
     }
   }
 }

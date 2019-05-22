@@ -3,8 +3,10 @@ using bi_dev.integration.reporting.storage;
 using bi_dev.integration.utils.storage.MsSql;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 
 namespace bi_dev.integration.reporting.cnsl.google_adwords
 {
@@ -16,7 +18,7 @@ namespace bi_dev.integration.reporting.cnsl.google_adwords
             string developerToken = File.ReadAllText(args[1]);
             string accountId = args[2];
             string reportType = args[3];
-            string[] columns = JsonConvert.DeserializeObject<string[]>(args[4]);
+            KeyValuePair<string, string>[] columns = JsonConvert.DeserializeObject<string[][]>(args[4]).Select(x=>new KeyValuePair<string, string>(x[0], x[1])).ToArray();
             string dateFormat = args[5];
             DateTime dateFrom = DateTime.ParseExact(args[6], dateFormat, CultureInfo.CurrentCulture);
             string dbConnectionString = File.ReadAllText(args[7]);
