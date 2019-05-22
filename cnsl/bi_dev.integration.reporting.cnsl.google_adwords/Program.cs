@@ -10,7 +10,7 @@ namespace bi_dev.integration.reporting.cnsl.google_adwords
 {
     class Program
     {
-        static void Main(string[] args)
+        static int Main(string[] args)
         {
             string credentialsJsonPath = args[0];
             string developerToken = File.ReadAllText(args[1]);
@@ -21,7 +21,7 @@ namespace bi_dev.integration.reporting.cnsl.google_adwords
             DateTime dateFrom = DateTime.ParseExact(args[6], dateFormat, CultureInfo.CurrentCulture);
             string dbConnectionString = File.ReadAllText(args[7]);
             string tblName = args[8];
-
+            Console.WriteLine(dbConnectionString);
             GADCustomReportManager p = new GADCustomReportManager(new ApiAdwrods201809CustomReportReceiver());
             var gadRep = p.Get(new GADCustomReportInitializer(
                 new GADConfig {
@@ -44,8 +44,9 @@ namespace bi_dev.integration.reporting.cnsl.google_adwords
                        "dbo"
                    )
                )
-           );
+            );
             cmsm.Save(gadRep);
+            return 0;
         }
     }
 }
