@@ -21,7 +21,7 @@ namespace bi_dev.integration.yandex.metrika.reporting
             WebClient wc = new WebClient();
             wc.Headers.Add(
                 "Authorization",
-                $"OAuth {YCommonCredentialManager.Get(new RestCredentialInitializer(config.TokensJsonPath)).AccessToken}"
+                $"OAuth {YCommonCredentialManager.Get(new YRestCredentialInitializer(config.TokensJsonPath)).AccessToken}"
             );
 
             string url = $"{ config.ApiUrl}stat/v1/data?ids={initializer.Counter.Id.ToString()}" +

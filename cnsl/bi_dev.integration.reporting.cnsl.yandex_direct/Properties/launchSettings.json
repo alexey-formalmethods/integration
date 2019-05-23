@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "bi_dev.integration.reporting.cnsl.yandex_direct": {
+      "commandName": "Project",
+      "commandLineArgs": "\"C:\\a.shamshur\\projects\\smartprice\\credentials\\yandex\\bi-dev-credentials.yd.json\" \"CAMPAIGN_PERFORMANCE_REPORT\" \"yyyy-MM-dd\" \"2019-05-21\"  \"[\\\"Date\\\", \\\"CampaignId\\\", \\\"Clicks\\\", \\\"Cost\\\"]\" \"C:\\a.shamshur\\public_projects\\integration\\common_credentials\\db-connection\\smartpriceBiStg.txt\" \"t_stg_yd_campaign_performance_report_one\""
+    }
+  }
+}

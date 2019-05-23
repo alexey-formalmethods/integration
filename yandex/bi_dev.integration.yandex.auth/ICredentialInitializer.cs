@@ -6,6 +6,6 @@ namespace bi_dev.integration.yandex.auth
 {
     public interface ICredentialInitializer
     {
-		CommonCredentials Get();
+		YCommonCredentials Get();
     }
 }

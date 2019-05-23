@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\google\bi_dev.integration.google.analytics.reporting.storage\bi_dev.integration.reporting.storage.csproj" />
+    <ProjectReference Include="..\..\yandex\bi_dev.integration.yandex.direct.reporting\bi_dev.integration.yandex.direct.reporting.csproj" />
+  </ItemGroup>
+
+</Project>

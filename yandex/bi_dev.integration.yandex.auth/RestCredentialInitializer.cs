@@ -1,22 +1,27 @@
-﻿using Newtonsoft.Json;
+﻿using bi_dev.integration.auth;
+using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Net;
 
 namespace bi_dev.integration.yandex.auth
 {
-    public class RestCredentialInitializer: ICredentialInitializer
+    public class YRestCredentialInitializer: ICredentialInitializer, IAuthInitializer
 	{
 		string refreshToken;
-		string clientId;
+        public string RefreshToken { get => this.refreshToken; }
+
+        string clientId;
+        public string ClientId { get => this.clientId; }
 		string clientSecret;
-		public RestCredentialInitializer(string refreshToken, string clientId, string clientSecret)
+        public string ClientSecret { get => this.clientSecret; }
+		public YRestCredentialInitializer(string refreshToken, string clientId, string clientSecret)
 		{
 			this.refreshToken = refreshToken;
 			this.clientId = clientId;
 			this.clientSecret = clientSecret;
 		}
-		public RestCredentialInitializer(string refreshTokenPath)
+		public YRestCredentialInitializer(string refreshTokenPath)
 		{
 			CredentialsFileModel response = JsonConvert.DeserializeObject<CredentialsFileModel>(File.ReadAllText(refreshTokenPath));
 			this.refreshToken = response.RefreshToken;
@@ -24,14 +29,14 @@ namespace bi_dev.integration.yandex.auth
 			this.clientSecret = response.ClientSecret;
 		}
 
-		public CommonCredentials Get()
+		public YCommonCredentials Get()
 		{
 			WebClient wc = new WebClient();
 			wc.Headers.Add(HttpRequestHeader.ContentType, "application/x-www-form-urlencoded");
 			string body = $"grant_type=refresh_token&refresh_token={refreshToken}&client_id={clientId}&client_secret={clientSecret}";
 			string result = wc.UploadString("https://oauth.yandex.ru/token", "POST", body);
 
-			return new CommonCredentials
+			return new YCommonCredentials
 			{
 				AccessToken = JsonConvert.DeserializeObject<RestTokenResponse>(result).AccessToken
 			};
