@@ -23,7 +23,7 @@ namespace bi_dev.integration.yandex.direct.reporting
                 WebClient wc = new WebClient();
                 wc.Headers[HttpRequestHeader.Authorization] = $"Bearer {credentials.AccessToken}";
                 wc.Headers["processingMode"] = "online";
-                wc.Headers["returnMoneyInMicros"] = "false";
+                wc.Headers["returnMoneyInMicros"] = "true";
                 wc.Headers["skipReportHeader"] = "true";
                 wc.Headers["skipReportSummary"] = "true";
 
