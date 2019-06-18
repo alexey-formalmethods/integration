@@ -27,7 +27,7 @@ namespace bi_dev.integration.yandex.direct.reporting.rest
         [JsonProperty(PropertyName = "DateRangeType")]
         public string DateRangeType { get => "CUSTOM_DATE"; }
 
-        public string ReportName { get => $"SP:{this.ReportType}:{SelectionCriteria.DateFrom}={SelectionCriteria.DateTo}"; }
+        public string ReportName { get => $"SP:{this.ReportType}:{FieldNames.GetHashCode()}:{SelectionCriteria.DateFrom}={SelectionCriteria.DateTo}"; }
 
         [JsonProperty(PropertyName = "Format")]
         public string Format { get => "TSV"; }
