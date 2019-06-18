@@ -56,7 +56,7 @@ namespace bi_dev.integration.yandex.direct.reporting
                 rr.AddParameter("application/json", body, ParameterType.RequestBody);
                 //wc.UploadString(Constants.RestApi5Url, JsonConvert.SerializeObject(apiRequest));
                 var response = rc.Execute(rr);
-                Encoding encoding = Encoding.GetEncoding("windows-1251");
+                Encoding encoding = Encoding.Unicode;
                 string tSvResult = encoding.GetString(response.RawBytes);
                 var report = new YDCustomReport(initializer, false);
                 if (response.StatusCode == HttpStatusCode.OK)
