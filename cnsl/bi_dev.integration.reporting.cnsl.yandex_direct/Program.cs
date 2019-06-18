@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System;
 using System.Globalization;
 using System.IO;
+using System.Text;
 
 namespace bi_dev.integration.reporting.cnsl.yandex_direct
 {
