@@ -13,7 +13,7 @@ namespace bi_dev.integration.reporting.cnsl.yandex_direct
     {
         static int Main(string[] args)
         {
-            Console.OutputEncoding = Encoding.UTF8;
+            Console.OutputEncoding = Encoding.Unicode;
             string credentialsJsonPath = args[0];
             string reportType = args[1];
             string[] columns = JsonConvert.DeserializeObject<string[]>(args[2]);
