@@ -8,9 +8,16 @@ namespace bi_dev.integration.yandex.direct.reporting
 {
     public class YDCustomReport : CustomReport<YDCustomReportInitializer>
     {
+        public bool IsReady { get; set; }
         public YDCustomReport(YDCustomReportInitializer initializer) : base(initializer)
         {
             this.Rows = new List<CustomReportRow>();
+            this.IsReady = true;
+        }
+        public YDCustomReport(YDCustomReportInitializer initializer, bool isReady) : base(initializer)
+        {
+            this.Rows = new List<CustomReportRow>();
+            this.IsReady = isReady;
         }
         public override DataTable ToDataTable()
         {

@@ -36,15 +36,20 @@ namespace bi_dev.integration.reporting.cnsl.yandex_direct
                     false
                 )
             );
+            if (rep.IsReady)
+            {
+                CustomReportStorageManager gsrmsm = new CustomReportStorageManager(
+                    new MsSqlCustomReportSaver(
+                        new MsSqlDataTableStorageWorker(),
+                        new MsSqlStorageInitializer(dbConnectionStringPath, destTblName, true, "dbo")
+                    )
+                );
+                gsrmsm.Save(rep);
+                return 0;
+            }
+            else return 2;
+       
             
-            CustomReportStorageManager gsrmsm = new CustomReportStorageManager(
-                new MsSqlCustomReportSaver(
-                    new MsSqlDataTableStorageWorker(),
-                    new MsSqlStorageInitializer(dbConnectionStringPath, destTblName, true, "dbo")
-                )
-            );
-            gsrmsm.Save(rep);
-            return 0;
         }
     }
 }
