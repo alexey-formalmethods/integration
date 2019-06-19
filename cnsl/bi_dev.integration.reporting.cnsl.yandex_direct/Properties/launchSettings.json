@@ -2,7 +2,7 @@
   "profiles": {
     "bi_dev.integration.reporting.cnsl.yandex_direct": {
       "commandName": "Project",
-      "commandLineArgs": "\"C:\\a.shamshur\\projects\\smartprice\\credentials\\yandex\\bi-dev-credentials.yd.json\" \"CUSTOM_REPORT\" \"[\\\"AdGroupId\\\",\\\"AdGroupName\\\"]\" \"yyyy-MM-dd\" \"2019-06-10\"  \"C:\\a.shamshur\\public_projects\\integration\\common_credentials\\db-connection\\smartpriceBiStg.txt\" \"t_stg_yd_criteria_performance_report_one\""
+      "commandLineArgs": "\"C:\\a.shamshur\\projects\\smartprice\\credentials\\yandex\\bi-dev-credentials.yd.json\" \"CUSTOM_REPORT\" \"[\\\"CampaignId\\\",\\\"CampaignName\\\",\\\"AdGroupId\\\",\\\"AdGroupName\\\",\\\"CampaignType\\\",\\\"CriterionId\\\",\\\"Criterion\\\",\\\"CriterionType\\\",\\\"Device\\\",\\\"LocationOfPresenceName\\\",\\\"Placement\\\",\\\"Bounces\\\",\\\"Clicks\\\",\\\"Impressions\\\",\\\"Cost\\\"]\" \"yyyy-MM-dd\" \"2019-06-10\"  \"C:\\a.shamshur\\public_projects\\integration\\common_credentials\\db-connection\\smartpriceBiStg.txt\" \"t_stg_yd_criteria_performance_report_one\""
     }
   }
 }
