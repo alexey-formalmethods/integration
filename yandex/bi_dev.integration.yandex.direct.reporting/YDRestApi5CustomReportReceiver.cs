@@ -52,6 +52,7 @@ namespace bi_dev.integration.yandex.direct.reporting
                         ReportType = initializer.ReportType
                     }
                 };
+                Console.WriteLine("ReportName: " + apiRequest.Params.ReportName);
                 var body = JsonConvert.SerializeObject(apiRequest);
                 rr.AddParameter("application/json", body, ParameterType.RequestBody);
                 //wc.UploadString(Constants.RestApi5Url, JsonConvert.SerializeObject(apiRequest));
