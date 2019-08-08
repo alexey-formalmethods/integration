@@ -37,7 +37,9 @@ namespace bi_dev.integration.google.sheets.reporting
             string spreadsheetId = initializer.SheetId;
             string range = $"{initializer.TabName}!{ initializer.Diapasone}";// "Sheet1!A:B";
             SpreadsheetsResource.ValuesResource.GetRequest request = service.Spreadsheets.Values.Get(spreadsheetId, range);
-
+            // request.MajorDimension = SpreadsheetsResource.ValuesResource.GetRequest.MajorDimensionEnum.DIMENSIONUNSPECIFIED;
+            // request.ValueRenderOption = SpreadsheetsResource.ValuesResource.GetRequest.ValueRenderOptionEnum.FORMATTEDVALUE;
+            // 
             // https://docs.google.com/spreadsheets/d/11WyHxWRfxSkrUKDtsJCpmLAeG4cv9yKJ7NYKsWx2bwY/edit
             ValueRange response = request.Execute();
             IList<IList<object>> values = response.Values;

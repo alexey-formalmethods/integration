@@ -20,7 +20,14 @@ namespace bi_dev.integration.utils.storage.MsSql
 					string columnNames = "";
 					for (int i = 0; i < dataTable.Columns.Count; i++)
 					{
-						columnNames = columnNames + ((i > 0) ? "," : "") + "[" + dataTable.Columns[i].ColumnName.Replace("[", "").Replace("]", "") + "] " + dataTable.Columns[i].DataType.GetSqlServerTypeName();
+                        // Если в конце навания колонки пробелы, заменим их на имволы
+                        string colName = dataTable.Columns[i].ColumnName;
+                        if (colName != colName.TrimEnd())
+                        {
+                            string newColNameStart = dataTable.Columns[i].ColumnName = dataTable.Columns[i].ColumnName.TrimEnd();
+                            newColNameStart = newColNameStart + colName.Replace(newColNameStart, "").Replace(" ", "#");
+                        }
+                        columnNames = columnNames + ((i > 0) ? "," : "") + "[" + dataTable.Columns[i].ColumnName.Replace("[", "").Replace("]", "") + "] " + dataTable.Columns[i].DataType.GetSqlServerTypeName();
 					}
 
 					string cmdText = string.Format(
