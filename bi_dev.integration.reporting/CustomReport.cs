@@ -21,6 +21,7 @@ namespace bi_dev.integration.reporting
         public CustomReport(T initializer)
         {
             this.initializer = initializer;
+            this.Rows = new List<CustomReportRow>();
         }
 
         public virtual DataTable ToDataTable()

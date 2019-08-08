@@ -2,7 +2,7 @@
   "profiles": {
     "bi_dev.integration.reporting.cnsl.google_sheet": {
       "commandName": "Project",
-      "commandLineArgs": "\"C:\\a.shamshur\\public_projects\\integration\\common_credentials\\google\\bi-dev-001-06eaf0f926da.json\"  \"1KhYfBvqKnligfp-UaynisH6KFuFQkZsR7Kv7_42pgVU\" \"Apple\" \"A:U\" \"\" \"[[\\\"buyout_condition\\\", \\\"bc\\\"],[\\\"accept_condition\\\", \\\"ac\\\"],[\\\"114\\\", \\\"114\\\"]]\" \"t_stg_gs_acceptance_conditions_fix\" \"dbo\" \"C:\\a.shamshur\\public_projects\\integration\\common_credentials\\db-connection\\smartpriceBiStg.txt\""
+      "commandLineArgs": "\"C:\\a.shamshur\\public_projects\\integration\\common_credentials\\google\\bi-dev-001-06eaf0f926da.json\"  \"18hcP2I8Vxo_razKaPkK66Qyy9aswS0jRCZOTcgQZM-M\" \"Ответы на форму (1)\" \"A:O\" \"\" \"\" \"t_stg_gs_pf_poll_result_out\" \"dbo\" \"C:\\a.shamshur\\public_projects\\integration\\common_credentials\\db-connection\\perfectgroupBiStg.txt\""
     }
   }
 }
