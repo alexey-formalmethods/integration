@@ -32,10 +32,9 @@ namespace bi_dev.integration.calltouch.reporting
             var result = JsonConvert.DeserializeObject<ICollection<Dictionary<string, object>>>(resultString);
             report.Rows = result?.Select(x => new CustomReportRow
             {
-                Cells = x.Select(t => {
+                Cells = x.Where(t=>initializer.Columns.ContainsKey(t.Key) || initializer.NoColumnsPassed).Select(t => {
                     if (initializer.NoColumnsPassed && (!initializer.Columns.ContainsKey(t.Key)))
                     {
-
                         initializer.Columns.Add(t.Key, new CTCustomReportColumn(t.Key));
                     }
                     return new CustomReportCell(initializer.Columns[t.Key], (t.Value != null && (t.Value.GetType().IsClass && t.Value.GetType() != typeof(string) || t.Value.GetType().IsArray)) ? JsonConvert.SerializeObject(t.Value) : t.Value?.ToString());
